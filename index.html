@@ -815,6 +815,107 @@
         margin-bottom: 60px;
       }
     }
+    /* ====== MOBILE RESPONSIVE ====== */
+
+@media (max-width: 768px) {
+
+    /* NAVBAR 变成更紧凑 */
+    .apple-nav {
+        padding: 12px 20px;
+    }
+
+    .apple-nav nav {
+        display: none;
+    }
+
+    /* 手机汉堡菜单 */
+    .menu-toggle {
+        display: block;
+        cursor: pointer;
+        font-size: 26px;
+        user-select: none;
+    }
+
+    /* 手机展开菜单 */
+    .mobile-nav {
+        display: none;
+        position: absolute;
+        top: 70px;
+        right: 20px;
+        background: rgba(255, 255, 255, 0.9);
+        backdrop-filter: blur(10px);
+        border-radius: 12px;
+        padding: 15px 20px;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+    }
+.mobile-nav.is-open {
+    display: block;
+}
+
+    .mobile-nav a,
+    .mobile-nav button {
+        display: block;
+        margin: 10px 0;
+        text-align: right;
+    }
+
+    /* HERO 内容缩小 */
+    .hero-content h1 {
+        font-size: 36px;
+        line-height: 42px;
+    }
+
+    .hero-content p {
+        font-size: 16px;
+        margin-bottom: 20px;
+        padding: 0 20px;
+    }
+
+    .hero-btn {
+        font-size: 16px;
+        padding: 12px 24px;
+    }
+}
+/* 手机汉堡菜单按钮 */
+.menu-toggle {
+    display: none;
+    font-size: 28px;
+    cursor: pointer;
+}
+
+/* 手机端下拉菜单 */
+.mobile-nav {
+    display: none;
+    position: absolute;
+    top: 70px;
+    right: 20px;
+    background: rgba(255,255,255,0.9);
+    backdrop-filter: blur(10px);
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+}
+
+.mobile-nav a,
+.mobile-nav button {
+    display: block;
+    margin-bottom: 12px;
+}
+
+/* ------- 手机屏幕适配 ------- */
+@media (max-width: 768px) {
+
+    /* 隐藏桌面导航 */
+    .apple-nav nav {
+        display: none;
+    }
+
+    /* 显示汉堡按钮 */
+    .menu-toggle {
+        display: block;
+    }
+}
+
   </style>
 </head>
 
@@ -822,6 +923,20 @@
  <!-- ======== Apple Style Hero Section ======== -->
 
 <header class="apple-nav">
+  <!-- 手机汉堡菜单按钮 -->
+<div class="menu-toggle">☰</div>
+
+<!-- 手机端下拉菜单 -->
+<div class="mobile-nav">
+    <a href="#inicio">Inicio</a>
+    <a href="#ejemplos">Ejemplos</a>
+    <a href="#generar">Generar</a>
+    <a href="#precios">Precios</a>
+    <a href="#contacto">Contacto</a>
+    <button class="login-btn">Iniciar sesión</button>
+    <button class="lang-btn">🌐 ES</button>
+</div>
+
     <div class="logo">impulso comercial</div>
     <nav>
         <a href="#inicio">Inicio</a>
@@ -1435,6 +1550,16 @@
         generateBtn.textContent = "Generar demo (simulado)";
       }, 1500);
     });
+    // 手机导航展开/收起
+const menuToggle = document.querySelector('.menu-toggle');
+const mobileNav  = document.querySelector('.mobile-nav');
+
+if (menuToggle && mobileNav) {
+    menuToggle.addEventListener('click', () => {
+        mobileNav.classList.toggle('is-open');
+    });
+}
+
   </script>
 </body>
 </html>
