@@ -1,1142 +1,1440 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Impulso Comercial</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
-<style>
-/* ------------------------------
-   GLOBAL
---------------------------------*/
-* {
-  box-sizing: border-box;
-}
-
-body {
-  margin: 0;
-  font-family: "Inter", -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
-  background: #ffffff;
-  color: #111827;
-  overflow-x: hidden;
-}
-
-a {
-  color: inherit;
-}
-
-/* ------------------------------
-   HEADER
---------------------------------*/
-header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  z-index: 50;
-  background: rgba(255,255,255,0.7);
-  backdrop-filter: blur(18px);
-  border-bottom: 1px solid rgba(0,0,0,0.06);
-}
-
-.nav-inner {
-  max-width: 1120px;
-  margin: 0 auto;
-  padding: 10px 16px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-}
-
-.nav-left {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.nav-left img {
-  height: 38px;
-}
-
-.nav-left span {
-  font-weight: 600;
-  font-size: 18px;
-}
-
-.nav-center {
-  display: flex;
-  align-items: center;
-  gap: 18px;
-  font-size: 14px;
-}
-
-.nav-center a {
-  text-decoration: none;
-  cursor: pointer;
-  position: relative;
-}
-
-.nav-center a::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: -4px;
-  width: 0;
-  height: 2px;
-  background: #111827;
-  transition: width 0.2s ease;
-}
-
-.nav-center a:hover::after {
-  width: 100%;
-}
-
-.nav-right {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-#langSelect {
-  padding: 6px 10px;
-  border-radius: 999px;
-  border: 1px solid #e5e7eb;
-  font-size: 13px;
-  background: rgba(255,255,255,0.8);
-}
-
-.btn-outline, .btn-primary {
-  border-radius: 999px;
-  padding: 7px 14px;
-  font-size: 13px;
-  border: 1px solid #111827;
-  background: transparent;
-  cursor: pointer;
-}
-
-.btn-primary {
-  background: #111827;
-  color: #ffffff;
-}
-
-.btn-outline:hover {
-  background: #111827;
-  color: #ffffff;
-}
-
-.btn-primary:hover {
-  opacity: 0.85;
-}
-
-/* MOBILE NAV */
-@media (max-width: 768px) {
-  .nav-center {
-    display: none;
-  }
-}
-
-/* ------------------------------
-   HERO WITH VIDEO BACKGROUND
---------------------------------*/
-section {
-  scroll-margin-top: 80px;
-}
-
-.hero {
-  position: relative;
-  height: 90vh;
-  min-height: 520px;
-  max-height: 780px;
-  overflow: hidden;
-}
-
-.hero video {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  filter: saturate(1.1) contrast(1.05) brightness(0.85);
-}
-
-.hero-overlay {
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(circle at top, rgba(255,255,255,0.35), transparent 55%),
-              linear-gradient(to bottom, rgba(15,23,42,0.5), rgba(15,23,42,0.7));
-}
-
-.hero-content {
-  position: relative;
-  z-index: 2;
-  max-width: 1120px;
-  margin: 0 auto;
-  padding: 120px 16px 60px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  height: 100%;
-  color: #f9fafb;
-}
-
-.hero-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 4px 10px;
-  border-radius: 999px;
-  background: rgba(15,23,42,0.6);
-  border: 1px solid rgba(148,163,184,0.5);
-  font-size: 12px;
-  margin-bottom: 16px;
-}
-
-.hero-badge-dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 999px;
-  background: #34d399;
-}
-
-.hero-title {
-  font-size: 40px;
-  font-weight: 700;
-  max-width: 640px;
-  margin-bottom: 16px;
-}
-
-.hero-sub {
-  font-size: 16px;
-  max-width: 520px;
-  color: #e5e7eb;
-  margin-bottom: 28px;
-}
-
-.hero-cta {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-  align-items: center;
-}
-
-.hero-cta .btn-primary {
-  font-size: 15px;
-  padding: 12px 24px;
-}
-
-.hero-secondary {
-  font-size: 13px;
-  color: #d1d5db;
-}
-
-@media (max-width: 768px) {
-  .hero-content {
-    padding-top: 110px;
-    padding-bottom: 40px;
-  }
-  .hero-title {
-    font-size: 28px;
-  }
-  .hero-sub {
-    font-size: 14px;
-  }
-}
-
-/* ------------------------------
-   GENERIC LAYOUT
---------------------------------*/
-.main-section {
-  max-width: 1120px;
-  margin: 0 auto;
-  padding: 64px 16px;
-}
-
-.section-header {
-  text-align: center;
-  margin-bottom: 32px;
-}
-
-.section-eyebrow {
-  font-size: 12px;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: #9ca3af;
-  margin-bottom: 8px;
-}
-
-.section-title {
-  font-size: 26px;
-  font-weight: 600;
-  margin-bottom: 8px;
-}
-
-.section-sub {
-  font-size: 14px;
-  color: #6b7280;
-}
-
-/* ------------------------------
-   IMAGE GALLERY
---------------------------------*/
-.gallery-grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 16px;
-}
-
-.gallery-item {
-  position: relative;
-  overflow: hidden;
-  border-radius: 20px;
-  background: #e5e7eb;
-}
-
-.gallery-item img {
-  width: 100%;
-  height: 220px;
-  object-fit: cover;
-  display: block;
-  transition: transform 0.4s ease, filter 0.4s ease;
-}
-
-.gallery-item-label {
-  position: absolute;
-  left: 12px;
-  bottom: 12px;
-  padding: 4px 10px;
-  border-radius: 999px;
-  font-size: 11px;
-  background: rgba(15,23,42,0.75);
-  color: #f9fafb;
-}
-
-.gallery-item:hover img {
-  transform: scale(1.05);
-  filter: brightness(1.05);
-}
-
-@media (max-width: 900px) {
-  .gallery-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-}
-@media (max-width: 600px) {
-  .gallery-grid {
-    grid-template-columns: minmax(0, 1fr);
-  }
-}
-
-/* ------------------------------
-   VIDEO CARDS
---------------------------------*/
-.video-grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 16px;
-}
-
-.video-card {
-  border-radius: 20px;
-  border: 1px solid #e5e7eb;
-  overflow: hidden;
-  background: #f9fafb;
-  display: flex;
-  flex-direction: column;
-}
-
-.video-thumb {
-  position: relative;
-  overflow: hidden;
-}
-
-.video-thumb video {
-  width: 100%;
-  height: 180px;
-  object-fit: cover;
-  display: block;
-}
-
-.video-thumb::after {
-  content: "▶";
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  width: 40px;
-  height: 40px;
-  border-radius: 999px;
-  background: rgba(15,23,42,0.75);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #f9fafb;
-  font-size: 18px;
-}
-
-.video-body {
-  padding: 12px 14px 14px;
-}
-
-.video-title {
-  font-size: 14px;
-  font-weight: 600;
-  margin-bottom: 4px;
-}
-
-.video-sub {
-  font-size: 12px;
-  color: #6b7280;
-}
-
-@media (max-width: 900px) {
-  .video-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-}
-@media (max-width: 700px) {
-  .video-grid {
-    grid-template-columns: minmax(0, 1fr);
-  }
-}
-
-/* ------------------------------
-   PRICING
---------------------------------*/
-.price-box {
-  max-width: 420px;
-  margin: 0 auto;
-  padding: 32px 28px 30px;
-  border-radius: 24px;
-  background: radial-gradient(circle at top left, #f9fafb, #e5e7eb);
-  border: 1px solid #e5e7eb;
-  box-shadow: 0 18px 40px rgba(15,23,42,0.08);
-  text-align: left;
-}
-
-.price-badge {
-  font-size: 12px;
-  display: inline-block;
-  padding: 3px 9px;
-  border-radius: 999px;
-  background: #111827;
-  color: #f9fafb;
-  margin-bottom: 12px;
-}
-
-.price-box h2 {
-  font-size: 22px;
-  margin: 0 0 4px;
-}
-
-.price-amount {
-  font-size: 34px;
-  font-weight: 700;
-  margin: 10px 0 6px;
-}
-
-.price-tagline {
-  font-size: 13px;
-  color: #6b7280;
-  margin-bottom: 16px;
-}
-
-.price-list {
-  list-style: none;
-  padding-left: 0;
-  margin: 0 0 20px;
-  font-size: 13px;
-  color: #4b5563;
-}
-
-.price-list li {
-  margin-bottom: 6px;
-}
-
-/* ------------------------------
-   CONTACT
---------------------------------*/
-.contact-box {
-  max-width: 640px;
-  margin: 0 auto;
-  padding: 28px 24px;
-  border-radius: 22px;
-  border: 1px solid #e5e7eb;
-  background: #f9fafb;
-  text-align: center;
-  font-size: 14px;
-}
-
-.contact-box a {
-  color: #111827;
-  font-weight: 600;
-  text-decoration: underline;
-}
-
-/* ------------------------------
-   GENERAR PAGE
---------------------------------*/
-#generar {
-  display: none;
-  padding: 120px 16px 80px;
-}
-
-.generator-section {
-  max-width: 820px;
-  margin: 0 auto 40px auto;
-  padding: 24px 22px 26px;
-  border-radius: 22px;
-  background: #f9fafb;
-  border: 1px solid #e5e7eb;
-}
-
-.generator-section h3 {
-  margin-top: 0;
-  font-size: 18px;
-}
-
-.generator-section label {
-  font-size: 13px;
-  color: #4b5563;
-}
-
-/* 上传图片 */
-.upload-box {
-  border: 2px dashed #d1d5db;
-  padding: 32px;
-  text-align: center;
-  border-radius: 18px;
-  cursor: pointer;
-  font-size: 14px;
-  color: #6b7280;
-  background: #f9fafb;
-}
-.upload-box:hover {
-  background: #f3f4f6;
-}
-
-/* AI 生成输出 */
-.result-box img, .result-box video {
-  width: 100%;
-  border-radius: 16px;
-  margin-top: 12px;
-}
-
-/* ------------------------------
-   FOOTER
---------------------------------*/
-footer {
-  padding: 28px 16px;
-  border-top: 1px solid #e5e7eb;
-  font-size: 12px;
-  color: #6b7280;
-  text-align: center;
-}
-
-/* BUTTON BASE */
-.btn-primary-large {
-  border-radius: 999px;
-  padding: 12px 24px;
-  font-size: 15px;
-  border: none;
-  background: #111827;
-  color: #f9fafb;
-  cursor: pointer;
-}
-.btn-primary-large:hover {
-  opacity: 0.85;
-}
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Impulso Comercial · IA Creativa para tu negocio</title>
+
+  <!-- Fuente estilo Apple -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet"
+  />
+
+  <style>
+    /* ------------------------------
+       GLOBAL APPLE STYLE
+    ------------------------------ */
+    :root {
+      --bg-main: #050509;
+      --bg-elevated: rgba(15, 15, 25, 0.85);
+      --accent: #4f7cff;
+      --accent-soft: rgba(79, 124, 255, 0.16);
+      --text-main: #f5f5f7;
+      --text-muted: #8f8fa3;
+      --border-subtle: rgba(255, 255, 255, 0.06);
+      --radius-xl: 24px;
+      --radius-lg: 18px;
+      --radius-pill: 999px;
+      --shadow-soft: 0 18px 45px rgba(0, 0, 0, 0.6);
+      --blur-strong: blur(26px);
+      --nav-height: 72px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont,
+        "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top, #22253b 0, #050509 55%);
+      color: var(--text-main);
+      scroll-behavior: smooth;
+    }
+
+    body {
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    main {
+      position: relative;
+      z-index: 1;
+    }
+
+    /* 背景视频 */
+    .hero-video {
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.4;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .overlay-gradient {
+      position: fixed;
+      inset: 0;
+      background: radial-gradient(
+          circle at top,
+          rgba(79, 124, 255, 0.4),
+          transparent 55%
+        ),
+        linear-gradient(to bottom, rgba(5, 5, 9, 0.2), #050509 90%);
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    /* ------------------------------
+       NAV
+    ------------------------------ */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      backdrop-filter: blur(20px);
+      background: linear-gradient(
+        to bottom,
+        rgba(5, 5, 9, 0.95),
+        rgba(5, 5, 9, 0.85),
+        transparent
+      );
+      border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+    }
+
+    .nav-inner {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 12px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .nav-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo-mark {
+      width: 30px;
+      height: 30px;
+      border-radius: 12px;
+      background: radial-gradient(circle at top, #75a5ff, #3a58ff);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6);
+    }
+
+    .logo-mark img {
+      width: 20px;
+      height: 20px;
+      object-fit: contain;
+    }
+
+    .logo-text {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .logo-title {
+      font-size: 16px;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+    }
+
+    .logo-sub {
+      font-size: 10px;
+      color: var(--text-muted);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 22px;
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    .nav-links a {
+      position: relative;
+      padding-bottom: 4px;
+      transition: color 0.2s ease;
+    }
+
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 0;
+      height: 2px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, #6b8bff, #b0e1ff);
+      transition: width 0.25s ease;
+    }
+
+    .nav-links a:hover {
+      color: #ffffff;
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .chip {
+      font-size: 11px;
+      padding: 4px 10px;
+      border-radius: var(--radius-pill);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      background: rgba(15, 15, 25, 0.75);
+      color: var(--text-muted);
+    }
+
+    .chip b {
+      color: #ffffff;
+    }
+
+    .btn-ghost,
+    .btn-primary {
+      font-size: 12px;
+      padding: 6px 14px;
+      border-radius: var(--radius-pill);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      background: rgba(15, 15, 25, 0.75);
+      color: #ffffff;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.18s ease-out;
+    }
+
+    .btn-ghost:hover {
+      background: rgba(38, 38, 58, 0.95);
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #6b8bff, #b0e1ff);
+      color: #050509;
+      border: none;
+      box-shadow: 0 14px 35px rgba(43, 87, 255, 0.6);
+    }
+
+    .btn-primary:hover {
+      filter: brightness(1.05);
+      transform: translateY(-1px);
+    }
+
+    .btn-lang {
+      padding-inline: 10px;
+      font-size: 11px;
+    }
+
+    .btn-lang span {
+      opacity: 0.7;
+    }
+
+    .btn-lang span.active {
+      opacity: 1;
+      font-weight: 600;
+    }
+
+    /* ------------------------------
+       LAYOUT WRAPPER
+    ------------------------------ */
+    .page {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 32px 20px 80px;
+      position: relative;
+      z-index: 1;
+    }
+
+    section {
+      margin-bottom: 80px;
+    }
+
+    /* ------------------------------
+       HERO
+    ------------------------------ */
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+      gap: 28px;
+      align-items: center;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 10px;
+      font-size: 11px;
+      border-radius: var(--radius-pill);
+      background: rgba(15, 15, 25, 0.75);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      color: var(--text-muted);
+      margin-bottom: 14px;
+      backdrop-filter: blur(12px);
+    }
+
+    .pill-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: #4ade80;
+      box-shadow: 0 0 12px #4ade80;
+    }
+
+    .hero-title {
+      font-size: 40px;
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+      margin: 0 0 12px;
+    }
+
+    .hero-gradient {
+      background: linear-gradient(120deg, #ffffff, #dbe7ff, #9ab9ff);
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .hero-subtitle {
+      font-size: 14px;
+      color: var(--text-muted);
+      max-width: 420px;
+      margin-bottom: 22px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+      margin-bottom: 14px;
+    }
+
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 18px;
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    .hero-meta strong {
+      color: #ffffff;
+    }
+
+    .hero-card {
+      background: var(--bg-elevated);
+      border-radius: var(--radius-xl);
+      padding: 18px 18px 16px;
+      border: 1px solid var(--border-subtle);
+      box-shadow: var(--shadow-soft);
+      backdrop-filter: var(--blur-strong);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 12px;
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    .hero-card-tag {
+      padding: 3px 8px;
+      border-radius: var(--radius-pill);
+      background: var(--accent-soft);
+      color: #dbe7ff;
+      font-size: 10px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .hero-switch {
+      display: inline-flex;
+      padding: 3px;
+      border-radius: var(--radius-pill);
+      background: rgba(10, 10, 20, 0.7);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      font-size: 11px;
+      gap: 4px;
+    }
+
+    .hero-switch button {
+      border: none;
+      border-radius: var(--radius-pill);
+      padding: 4px 10px;
+      background: transparent;
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: all 0.18s ease-out;
+    }
+
+    .hero-switch button.active {
+      background: #ffffff;
+      color: #111827;
+      font-weight: 600;
+    }
+
+    .prompt-box {
+      margin-top: 10px;
+      background: rgba(5, 5, 9, 0.9);
+      border-radius: 14px;
+      padding: 10px 11px;
+      border: 1px solid rgba(148, 163, 184, 0.3);
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    .prompt-box strong {
+      color: #e5e7eb;
+    }
+
+    .hero-preview {
+      margin-top: 10px;
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid rgba(148, 163, 184, 0.25);
+      background: radial-gradient(circle at top left, #1f2937, #020617);
+      aspect-ratio: 4 / 3;
+      position: relative;
+    }
+
+    .hero-preview img,
+    .hero-preview video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .hero-preview-label {
+      position: absolute;
+      bottom: 12px;
+      left: 12px;
+      padding: 4px 9px;
+      border-radius: var(--radius-pill);
+      background: rgba(15, 23, 42, 0.85);
+      font-size: 10px;
+      color: #e5e7eb;
+      border: 1px solid rgba(148, 163, 184, 0.4);
+    }
+
+    /* ------------------------------
+       SECTION TITLES
+    ------------------------------ */
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 18px;
+      gap: 12px;
+    }
+
+    .section-title {
+      font-size: 20px;
+      letter-spacing: -0.02em;
+      margin: 0;
+    }
+
+    .section-subtitle {
+      font-size: 12px;
+      color: var(--text-muted);
+      max-width: 360px;
+    }
+
+    /* ------------------------------
+       EJEMPLOS
+    ------------------------------ */
+    .examples-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .example-card {
+      background: rgba(11, 11, 20, 0.9);
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border-subtle);
+      padding: 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      font-size: 11px;
+    }
+
+    .example-tag {
+      font-size: 10px;
+      color: var(--text-muted);
+    }
+
+    .example-title {
+      font-size: 13px;
+      font-weight: 500;
+    }
+
+    .example-media {
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      aspect-ratio: 4 / 3;
+      background: radial-gradient(circle at top left, #1f2937, #020617);
+    }
+
+    /* ------------------------------
+       GENERAR
+    ------------------------------ */
+    .generate-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+      gap: 22px;
+      align-items: flex-start;
+    }
+
+    .panel {
+      background: rgba(10, 10, 20, 0.92);
+      border-radius: var(--radius-xl);
+      border: 1px solid var(--border-subtle);
+      padding: 16px 16px 14px;
+      box-shadow: 0 18px 45px rgba(0, 0, 0, 0.7);
+      backdrop-filter: var(--blur-strong);
+    }
+
+    .panel-title {
+      font-size: 14px;
+      margin-bottom: 10px;
+    }
+
+    .panel-title span {
+      font-size: 11px;
+      color: var(--text-muted);
+      font-weight: 400;
+    }
+
+    label {
+      font-size: 11px;
+      color: var(--text-muted);
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    textarea,
+    select,
+    input[type="file"] {
+      width: 100%;
+      border-radius: 12px;
+      border: 1px solid rgba(148, 163, 184, 0.35);
+      background: rgba(5, 5, 12, 0.9);
+      color: #e5e7eb;
+      font-size: 12px;
+      padding: 8px 9px;
+      outline: none;
+      resize: vertical;
+      min-height: 70px;
+    }
+
+    textarea:focus,
+    select:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 1px rgba(79, 124, 255, 0.4);
+    }
+
+    .field-row {
+      display: flex;
+      gap: 10px;
+      margin-top: 8px;
+    }
+
+    .field-row > div {
+      flex: 1;
+    }
+
+    .upload-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    .upload-hint {
+      font-size: 10px;
+      color: var(--text-muted);
+    }
+
+    .btn-generate {
+      margin-top: 12px;
+      width: 100%;
+      justify-content: center;
+    }
+
+    .results-box {
+      border-radius: 16px;
+      border: 1px dashed rgba(148, 163, 184, 0.6);
+      background: radial-gradient(circle at top left, #111827, #020617);
+      aspect-ratio: 4 / 3;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-muted);
+      font-size: 12px;
+      text-align: center;
+      padding: 14px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .results-box img,
+    .results-box video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: none;
+    }
+
+    .results-box.ready img,
+    .results-box.ready video {
+      display: block;
+    }
+
+    .results-label {
+      position: absolute;
+      left: 12px;
+      top: 12px;
+      font-size: 10px;
+      padding: 3px 8px;
+      border-radius: var(--radius-pill);
+      background: rgba(15, 23, 42, 0.85);
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      color: #e5e7eb;
+    }
+
+    /* ------------------------------
+       PRECIOS
+    ------------------------------ */
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .price-card {
+      background: rgba(10, 10, 18, 0.95);
+      border-radius: var(--radius-xl);
+      border: 1px solid var(--border-subtle);
+      padding: 14px 14px 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .price-card:nth-child(2) {
+      border-color: rgba(96, 165, 250, 0.9);
+      box-shadow: 0 16px 40px rgba(59, 130, 246, 0.55);
+    }
+
+    .price-name {
+      font-size: 13px;
+      font-weight: 500;
+    }
+
+    .price-desc {
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    .price-value {
+      font-size: 20px;
+      font-weight: 600;
+    }
+
+    .price-value span {
+      font-size: 11px;
+      color: var(--text-muted);
+      font-weight: 400;
+    }
+
+    .price-features {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      font-size: 11px;
+      color: var(--text-muted);
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    .price-features li::before {
+      content: "• ";
+      color: #a5b4fc;
+    }
+
+    .price-cta {
+      margin-top: 8px;
+      align-self: flex-start;
+    }
+
+    /* ------------------------------
+       CONTACTO
+    ------------------------------ */
+    .contact-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+      gap: 22px;
+      align-items: flex-start;
+    }
+
+    .contact-info {
+      font-size: 12px;
+      color: var(--text-muted);
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .contact-info a {
+      color: #bfdbfe;
+    }
+
+    .contact-form {
+      display: grid;
+      gap: 8px;
+    }
+
+    .contact-form-row {
+      display: flex;
+      gap: 10px;
+    }
+
+    .contact-form-row > div {
+      flex: 1;
+    }
+
+    .btn-contact {
+      margin-top: 6px;
+      width: fit-content;
+    }
+
+    /* ------------------------------
+       FOOTER
+    ------------------------------ */
+    footer {
+      border-top: 1px solid rgba(31, 41, 55, 0.9);
+      padding: 18px 20px 26px;
+      font-size: 11px;
+      color: var(--text-muted);
+      background: rgba(3, 7, 18, 0.96);
+    }
+
+    .footer-inner {
+      max-width: 1120px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .footer-links a {
+      color: #9ca3af;
+    }
+
+    /* ------------------------------
+       RESPONSIVE
+    ------------------------------ */
+    @media (max-width: 900px) {
+      .hero,
+      .generate-layout,
+      .examples-grid,
+      .pricing-grid,
+      .contact-layout {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .hero {
+        margin-top: 14px;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .page {
+        padding-top: 20px;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .page {
+        padding-inline: 16px;
+      }
+
+      .hero-title {
+        font-size: 30px;
+      }
+
+      .examples-grid,
+      .pricing-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      section {
+        margin-bottom: 60px;
+      }
+    }
+  </style>
 </head>
 
 <body>
+ <!-- ======== Apple Style Hero Section ======== -->
 
-<!-- HEADER -->
-<header>
-  <div class="nav-inner">
-    <div class="nav-left">
-      <img src="assets/logo.png" alt="Impulso Comercial Logo">
-      <span>Impulso Comercial</span>
-    </div>
-
-    <nav class="nav-center">
-      <a onclick="scrollToSection('hero')" data-lang="nav_inicio">Inicio</a>
-      <a onclick="scrollToSection('ejemplos')" data-lang="nav_ejemplos">Ejemplos</a>
-      <a onclick="goGenerar()" data-lang="nav_generar">Generar</a>
-      <a onclick="scrollToSection('precios')" data-lang="nav_precios">Precios</a>
-      <a onclick="scrollToSection('contacto')" data-lang="nav_contacto">Contacto</a>
+<header class="apple-nav">
+    <div class="logo">impulso comercial</div>
+    <nav>
+        <a href="#inicio">Inicio</a>
+        <a href="#ejemplos">Ejemplos</a>
+        <a href="#generar">Generar</a>
+        <a href="#precios">Precios</a>
+        <a href="#contacto">Contacto</a>
+        <button class="login-btn">Iniciar sesión</button>
+        <button class="lang-btn">🌐 ES</button>
     </nav>
-
-    <div class="nav-right">
-      <select id="langSelect">
-        <option value="es">ES</option>
-        <option value="en">EN</option>
-        <option value="zh">中文</option>
-      </select>
-      <button class="btn-outline" onclick="fakeLogin()" data-lang="btn_login">Iniciar sesión</button>
-      <button class="btn-primary" onclick="fakeMembers()" data-lang="btn_members">Área de miembros</button>
-    </div>
-  </div>
 </header>
 
-<!-- HERO -->
-<section id="hero" class="hero main-section">
-  <video autoplay muted loop playsinline>
-    <!-- Apple 风占位视频：以后你只需改这一行 src -->
-    <source src="https://samplelib.com/lib/preview/mp4/sample-5s.mp4" type="video/mp4">
-  </video>
-  <div class="hero-overlay"></div>
+<section class="hero">
+    <video autoplay muted loop class="hero-video">
+        <source src="assets/apple-temp.mp4" type="video/mp4">
+    </video>
 
-  <div class="hero-content">
-    <div class="hero-badge">
-      <div class="hero-badge-dot"></div>
-      <span data-lang="hero_badge">Vídeo, imagen y texto en minutos</span>
+    <div class="hero-content">
+        <h1>Impulsa tu negocio con IA</h1>
+        <p>Genera imágenes, videos y contenido profesional al estilo Apple.</p>
+        <button class="hero-btn">Comenzar</button>
     </div>
-    <h1 class="hero-title" data-lang="hero_title">
-      Impulsa tu negocio con vídeos generados por IA
-    </h1>
-    <p class="hero-sub" data-lang="hero_sub">
-      Crea vídeos promocionales, imágenes y textos para redes sociales sin grabar ni editar. Pensado para restaurantes, gimnasios, tiendas y negocios locales.
-    </p>
-
-    <div class="hero-cta">
-      <a class="btn-primary-large"
-         href="https://buy.stripe.com/test_aFa14g2jI3BR37u6Ma5c400"
-         target="_blank"
-         data-lang="hero_btn">
-        Acceso completo por €19.99 / mes
-      </a>
-      <span class="hero-secondary" data-lang="hero_note">
-        Sin permanencia. PayPal disponible en la página de pago.
-      </span>
-    </div>
-  </div>
 </section>
 
-<!-- EJEMPLOS IMÁGENES -->
-<section id="ejemplos" class="main-section">
-  <div class="section-header">
-    <div class="section-eyebrow" data-lang="examples_eyebrow">GALERÍA</div>
-    <h2 class="section-title" data-lang="examples_title">Cómo podría verse tu negocio</h2>
-    <p class="section-sub" data-lang="examples_sub">
-      Algunas ideas de estilos de vídeo y creatividades que puedes generar con Impulso Comercial.
-    </p>
-  </div>
+<!-- ======== Apple Style CSS ======== -->
+<style>
+/* NAVBAR */
+.apple-nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    backdrop-filter: blur(12px);
+    background: rgba(255, 255, 255, 0.25);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 18px 40px;
+    z-index: 1000;
+}
 
-  <div class="gallery-grid">
-    <div class="gallery-item">
-      <img src="https://images.pexels.com/photos/3184183/pexels-photo-3184183.jpeg?auto=compress&dpr=2&w=800" alt="Restaurante">
-      <div class="gallery-item-label" data-lang="examples_tag_restaurant">Restaurante</div>
-    </div>
-    <div class="gallery-item">
-      <img src="https://images.pexels.com/photos/841130/pexels-photo-841130.jpeg?auto=compress&dpr=2&w=800" alt="Gimnasio">
-      <div class="gallery-item-label" data-lang="examples_tag_gym">Gimnasio</div>
-    </div>
-    <div class="gallery-item">
-      <img src="https://images.pexels.com/photos/4484078/pexels-photo-4484078.jpeg?auto=compress&dpr=2&w=800" alt="Almacén">
-      <div class="gallery-item-label" data-lang="examples_tag_warehouse">Almacén</div>
-    </div>
-    <div class="gallery-item">
-      <img src="https://images.pexels.com/photos/3962285/pexels-photo-3962285.jpeg?auto=compress&dpr=2&w=800" alt="Cafetería">
-      <div class="gallery-item-label" data-lang="examples_tag_coffee">Cafetería</div>
-    </div>
-    <div class="gallery-item">
-      <img src="https://images.pexels.com/photos/373893/pexels-photo-373893.jpeg?auto=compress&dpr=2&w=800" alt="Tienda de ropa">
-      <div class="gallery-item-label" data-lang="examples_tag_store">Tienda</div>
-    </div>
-    <div class="gallery-item">
-      <img src="https://images.pexels.com/photos/5483071/pexels-photo-5483071.jpeg?auto=compress&dpr=2&w=800" alt="Centro de estética">
-      <div class="gallery-item-label" data-lang="examples_tag_beauty">Estética</div>
-    </div>
-  </div>
-</section>
+.apple-nav .logo {
+    font-size: 20px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
 
-<!-- EJEMPLOS VÍDEO -->
-<section class="main-section">
-  <div class="section-header">
-    <div class="section-eyebrow" data-lang="videos_eyebrow">VÍDEO DEMO</div>
-    <h2 class="section-title" data-lang="videos_title">Ejemplos de vídeos cortos</h2>
-    <p class="section-sub" data-lang="videos_sub">
-      Vídeos de 5–15 segundos pensados para historias, anuncios y pantallas dentro de tu negocio.
-    </p>
-  </div>
+.apple-nav nav a {
+    margin: 0 18px;
+    text-decoration: none;
+    color: #111;
+    font-size: 15px;
+}
 
-  <div class="video-grid">
-    <div class="video-card">
-      <div class="video-thumb">
-        <video muted loop>
-          <source src="https://samplelib.com/lib/preview/mp4/sample-5s.mp4" type="video/mp4">
-        </video>
+.apple-nav button {
+    margin-left: 15px;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 40px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.login-btn {
+    background: #111;
+    color: white;
+}
+
+.lang-btn {
+    background: rgba(255, 255, 255, 0.6);
+}
+
+/* HERO SECTION */
+.hero {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.hero-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(0.6);
+}
+
+.hero-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: white;
+}
+
+.hero-content h1 {
+    font-size: 64px;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+.hero-content p {
+    font-size: 22px;
+    margin-bottom: 30px;
+}
+
+.hero-btn {
+    background: white;
+    color: #111;
+    padding: 14px 32px;
+    border-radius: 40px;
+    font-size: 18px;
+    cursor: pointer;
+}
+</style>
+
+  <!-- NAV -->
+  <header>
+    <div class="nav-inner">
+      <div class="nav-left">
+        <div class="logo-mark">
+          <!-- 用你的 logo.png 也可以：<img src="assets/logo.png" alt="Logo" /> -->
+          <img src="assets/logo.png" alt="Impulso logo" />
+        </div>
+        <div class="logo-text">
+          <div class="logo-title">Impulso Comercial</div>
+          <div class="logo-sub">Contenido IA para vender más</div>
+        </div>
       </div>
-      <div class="video-body">
-        <div class="video-title" data-lang="video1_title">Promo restaurante</div>
-        <div class="video-sub" data-lang="video1_sub">Menú del día, carta y ambiente en un solo clip.</div>
+
+      <nav class="nav-links">
+        <a href="#inicio">Inicio</a>
+        <a href="#ejemplos">Ejemplos</a>
+        <a href="#generar">Generar</a>
+        <a href="#precios">Precios</a>
+        <a href="#contacto">Contacto</a>
+      </nav>
+
+      <div class="nav-right">
+        <div class="chip">
+          <b>Beta</b>&nbsp;· IA para tu equipo comercial
+        </div>
+        <button class="btn-ghost btn-lang" type="button">
+          <span class="active">ES</span>
+          <span>/</span>
+          <span>EN</span>
+        </button>
+        <button class="btn-ghost" type="button">Iniciar sesión</button>
+        <button class="btn-primary" type="button">Centro de miembros</button>
       </div>
     </div>
-    <div class="video-card">
-      <div class="video-thumb">
-        <video muted loop>
-          <source src="https://samplelib.com/lib/preview/mp4/sample-10s.mp4" type="video/mp4">
-        </video>
+  </header>
+
+  <main class="page">
+    <!-- HERO -->
+    <section id="inicio" class="hero">
+      <div>
+        <div class="pill">
+          <span class="pill-dot"></span>
+          Impulso IA · para equipos comerciales modernos
+        </div>
+
+        <h1 class="hero-title">
+          <span class="hero-gradient">Imágenes & videos de venta</span>
+          <br />generados con IA.
+        </h1>
+
+        <p class="hero-subtitle">
+          Lanza campañas en minutos: sube tu producto, escribe una idea y deja
+          que Impulso genere visuales listos para redes, anuncios y landing
+          pages.
+        </p>
+
+        <div class="hero-actions">
+          <button class="btn-primary" type="button" onclick="scrollToSection('generar')">
+            Empezar ahora
+          </button>
+          <button class="btn-ghost" type="button" onclick="scrollToSection('ejemplos')">
+            Ver ejemplos reales
+          </button>
+        </div>
+
+        <div class="hero-meta">
+          <span><strong>0 código</strong> · sólo texto y archivos</span>
+          <span><strong>IA de OpenAI</strong> · lista para integrar</span>
+          <span><strong>Multi-canal</strong> · social, web, presentaciones</span>
+        </div>
       </div>
-      <div class="video-body">
-        <div class="video-title" data-lang="video2_title">Promo gimnasio</div>
-        <div class="video-sub" data-lang="video2_sub">Clases, entrenos y oferta de bienvenida.</div>
+
+      <div class="hero-card">
+        <div class="hero-card-header">
+          <span class="hero-card-tag">Demo en vivo</span>
+          <div class="hero-switch">
+            <button id="heroToggleImage" class="active" type="button">Imagen</button>
+            <button id="heroToggleVideo" type="button">Video</button>
+          </div>
+        </div>
+
+        <div class="prompt-box">
+          <strong>Brief:</strong> anuncio minimalista para un SaaS de
+          automatización, estilo Apple, fondo oscuro y texto claro.
+        </div>
+
+        <div class="hero-preview" id="heroPreview">
+          <img
+            id="heroPreviewImage"
+            src="https://images.pexels.com/photos/1181675/pexels-photo-1181675.jpeg?auto=compress&cs=tinysrgb&w=1200"
+            alt="Preview de ejemplo"
+          />
+          <video
+            id="heroPreviewVideo"
+            src="https://videos.pexels.com/video-files/6898855/6898855-uhd_2560_1440_25fps.mp4"
+            muted
+            loop
+            playsinline
+          ></video>
+          <div class="hero-preview-label">Contenido de ejemplo generado</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- EJEMPLOS -->
+    <section id="ejemplos">
+      <div class="section-header">
+        <div>
+          <h2 class="section-title">Ejemplos de uso</h2>
+          <p class="section-subtitle">
+            Combina imagen y video para mostrar tu propuesta de valor en cada
+            punto del funnel comercial.
+          </p>
+        </div>
+      </div>
+
+      <div class="examples-grid">
+        <article class="example-card">
+          <div class="example-tag">Imagen · Redes sociales</div>
+          <div class="example-title">Post de LinkedIn para lanzamiento</div>
+          <div class="example-media">
+            <img
+              src="https://images.pexels.com/photos/1181243/pexels-photo-1181243.jpeg?auto=compress&cs=tinysrgb&w=1200"
+              alt="Ejemplo social"
+            />
+          </div>
+        </article>
+
+        <article class="example-card">
+          <div class="example-tag">Video corto · Anuncio</div>
+          <div class="example-title">Story para captar leads</div>
+          <div class="example-media">
+            <video
+              src="https://videos.pexels.com/video-files/6898855/6898855-uhd_2560_1440_25fps.mp4"
+              autoplay
+              muted
+              loop
+              playsinline
+            ></video>
+          </div>
+        </article>
+
+        <article class="example-card">
+          <div class="example-tag">Imagen · Presentación</div>
+          <div class="example-title">Slide hero para tu deck comercial</div>
+          <div class="example-media">
+            <img
+              src="https://images.pexels.com/photos/1181671/pexels-photo-1181671.jpeg?auto=compress&cs=tinysrgb&w=1200"
+              alt="Ejemplo presentaciones"
+            />
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- GENERAR -->
+    <section id="generar">
+      <div class="section-header">
+        <div>
+          <h2 class="section-title">Generar contenido</h2>
+          <p class="section-subtitle">
+            Esta demo simula el flujo real. Más adelante podrás conectar tu
+            propia API de OpenAI de forma segura en backend.
+          </p>
+        </div>
+      </div>
+
+      <div class="generate-layout">
+        <div class="panel">
+          <div class="panel-title">
+            Brief para la IA
+            <span>· describe qué quieres ver en tu imagen o video</span>
+          </div>
+
+          <label for="promptInput">Texto del prompt</label>
+          <textarea
+            id="promptInput"
+            placeholder="Ejemplo: Banner minimalista para automatización comercial, con colores azul y violeta, estilo Apple."
+          ></textarea>
+
+          <div class="field-row">
+            <div>
+              <label for="typeSelect">Tipo de contenido</label>
+              <select id="typeSelect">
+                <option value="image">Imagen</option>
+                <option value="video">Video corto</option>
+              </select>
+            </div>
+
+            <div>
+              <label for="styleSelect">Estilo</label>
+              <select id="styleSelect">
+                <option value="apple">Minimalista Apple</option>
+                <option value="product">Producto sobre fondo limpio</option>
+                <option value="landing">Hero para landing</option>
+                <option value="social">Formato redes</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="upload-row">
+            <div>
+              <label for="fileInput">Subir imagen base (opcional)</label>
+              <input id="fileInput" type="file" accept="image/*" />
+            </div>
+            <div class="upload-hint">
+              Ideal para subir tu
+              <br />producto, logo o mockup.
+            </div>
+          </div>
+
+          <button id="generateBtn" class="btn-primary btn-generate" type="button">
+            Generar demo (simulado)
+          </button>
+        </div>
+
+        <div class="panel">
+          <div class="panel-title">
+            Resultado
+            <span>· demo local sin usar tu API key</span>
+          </div>
+
+          <div class="results-box" id="resultsBox">
+            <div class="results-label" id="resultsLabel">Esperando contenido…</div>
+            <img
+              id="resultImage"
+              alt="Resultado de imagen"
+              src=""
+            />
+            <video
+              id="resultVideo"
+              autoplay
+              muted
+              loop
+              playsinline
+            ></video>
+            <span id="resultsPlaceholder">
+              Cuando pulses “Generar demo”, simularemos una respuesta de IA con
+              contenido de ejemplo.
+            </span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PRECIOS -->
+    <section id="precios">
+      <div class="section-header">
+        <div>
+          <h2 class="section-title">Planes pensados para equipos comerciales</h2>
+          <p class="section-subtitle">
+            Empieza con un plan básico y escala cuando tu equipo necesite más
+            volumen de imágenes y videos generados.
+          </p>
+        </div>
+      </div>
+
+      <div class="pricing-grid">
+        <article class="price-card">
+          <div class="price-name">Starter</div>
+          <div class="price-desc">
+            Para freelancers y pequeños negocios que empiezan a usar IA.
+          </div>
+          <div class="price-value">
+            19 €<span>/mes</span>
+          </div>
+          <ul class="price-features">
+            <li>Hasta 200 imágenes al mes</li>
+            <li>Videos demo en baja resolución</li>
+            <li>Plantillas base de prompts</li>
+          </ul>
+          <button class="btn-ghost price-cta" type="button">
+            Probar Starter
+          </button>
+        </article>
+
+        <article class="price-card">
+          <div class="price-name">Equipo</div>
+          <div class="price-desc">
+            El equilibrio ideal para equipos comerciales de 3 a 10 personas.
+          </div>
+          <div class="price-value">
+            59 €<span>/mes</span>
+          </div>
+          <ul class="price-features">
+            <li>1.000 imágenes + 100 videos al mes</li>
+            <li>Biblioteca de estilos por canal</li>
+            <li>Panel de miembros y permisos</li>
+          </ul>
+          <button class="btn-primary price-cta" type="button">
+            Hablar con ventas
+          </button>
+        </article>
+
+        <article class="price-card">
+          <div class="price-name">Enterprise</div>
+          <div class="price-desc">
+            Integración a medida con tu CRM y stack de automatización.
+          </div>
+          <div class="price-value">
+            A medida <span>/contacto</span>
+          </div>
+          <ul class="price-features">
+            <li>Integración con tu API de OpenAI</li>
+            <li>Flujos multi-equipo y reporting</li>
+            <li>Soporte prioritario</li>
+          </ul>
+          <button class="btn-ghost price-cta" type="button">
+            Solicitar demo
+          </button>
+        </article>
+      </div>
+    </section>
+
+    <!-- CONTACTO -->
+    <section id="contacto">
+      <div class="section-header">
+        <div>
+          <h2 class="section-title">Contacto</h2>
+          <p class="section-subtitle">
+            ¿Tienes un caso concreto de uso o quieres ver cómo quedaría tu
+            producto? Envíanos un mensaje.
+          </p>
+        </div>
+      </div>
+
+      <div class="contact-layout">
+        <div class="contact-info">
+          <p>
+            <strong>Email directo:</strong>
+            <br />
+            <a href="mailto:hmario0713@gmail.com">hmario0713@gmail.com</a>
+          </p>
+          <p>
+            Cuéntanos quién es tu cliente ideal, qué producto vendes y en qué
+            canales quieres mostrar tus creatividades (LinkedIn, Instagram,
+            landing page, presentaciones, etc.).
+          </p>
+        </div>
+
+        <form
+          class="contact-form"
+          onsubmit="event.preventDefault(); alert('Esta es una demo. Usa el email para contacto real.');"
+        >
+          <div class="contact-form-row">
+            <div>
+              <label for="nameInput">Nombre</label>
+              <input id="nameInput" type="text" placeholder="Tu nombre" />
+            </div>
+            <div>
+              <label for="companyInput">Empresa</label>
+              <input id="companyInput" type="text" placeholder="Nombre de empresa" />
+            </div>
+          </div>
+
+          <label for="messageInput">Mensaje</label>
+          <textarea
+            id="messageInput"
+            placeholder="Ejemplo: Queremos generar creatividades para una campaña en España y Latinoamérica…"
+          ></textarea>
+
+          <button class="btn-primary btn-contact" type="submit">
+            Enviar mensaje (demo)
+          </button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+      <div>© <span id="yearSpan"></span> Impulso Comercial · Prototipo IA.</div>
+      <div class="footer-links">
+        <a href="#inicio">Inicio</a>
+        <a href="#generar">Generar</a>
+        <a href="#precios">Precios</a>
+        <a href="#contacto">Contacto</a>
       </div>
     </div>
-    <div class="video-card">
-      <div class="video-thumb">
-        <video muted loop>
-          <source src="https://samplelib.com/lib/preview/mp4/sample-15s.mp4" type="video/mp4">
-        </video>
-      </div>
-      <div class="video-body">
-        <div class="video-title" data-lang="video3_title">Almacén / B2B</div>
-        <div class="video-sub" data-lang="video3_sub">Stock, logística y llamada a empresas.</div>
-      </div>
-    </div>
-  </div>
-</section>
+  </footer>
 
-<!-- PRECIOS -->
-<section id="precios" class="main-section">
-  <div class="section-header">
-    <div class="section-eyebrow" data-lang="price_eyebrow">PLAN ÚNICO</div>
-    <h2 class="section-title" data-lang="price_title">Un solo plan, todo incluido</h2>
-    <p class="section-sub" data-lang="price_sub">
-      Sin tecnicismos, sin complicaciones. Pagas una cuota y generas contenido siempre que quieras.
-    </p>
-  </div>
+  <script>
+    // Año dinámico
+    document.getElementById("yearSpan").textContent =
+      new Date().getFullYear();
 
-  <div class="price-box">
-    <div class="price-badge" data-lang="price_badge">Ideal para negocios locales</div>
-    <h2 data-lang="price_plan">Plan Mensual</h2>
-    <div class="price-amount">€19.99</div>
-    <div class="price-tagline" data-lang="price_tagline">Cuota mensual, impuestos no incluidos.</div>
-
-    <ul class="price-list">
-      <li data-lang="price_item1">Generación de vídeos cortos con IA.</li>
-      <li data-lang="price_item2">Imágenes promocionales adaptadas a tu sector.</li>
-      <li data-lang="price_item3">Mejora automática de tus propias fotos.</li>
-      <li data-lang="price_item4">Copys listos para redes sociales y anuncios.</li>
-      <li data-lang="price_item5">Acceso desde móvil u ordenador.</li>
-    </ul>
-
-    <a class="btn-primary-large"
-       href="https://buy.stripe.com/test_aFa14g2jI3BR37u6Ma5c400"
-       target="_blank"
-       data-lang="price_btn">
-      Acceso completo por €19.99 / mes
-    </a>
-
-    <p style="margin-top:14px;font-size:12px;" data-lang="paypal_info">
-      PayPal disponible en la página de pago.
-    </p>
-  </div>
-</section>
-
-<!-- CONTACTO -->
-<section id="contacto" class="main-section">
-  <div class="section-header">
-    <div class="section-eyebrow" data-lang="contact_eyebrow">CONTACTO</div>
-    <h2 class="section-title" data-lang="contact_title">¿Tienes dudas o un caso especial?</h2>
-    <p class="section-sub" data-lang="contact_sub">
-      Cuéntame qué tipo de negocio tienes y qué tipo de contenido quieres crear. Te responderé personalmente.
-    </p>
-  </div>
-
-  <div class="contact-box">
-    <p data-lang="contact_text">
-      Escríbeme un correo y te responderé lo antes posible con una propuesta adaptada a tu negocio.
-    </p>
-    <p>
-      <strong>Email:</strong>
-      <a href="mailto:hmario0713@gmail.com">hmario0713@gmail.com</a>
-    </p>
-  </div>
-</section>
-
-<!-- GENERAR CONTENT PAGE (bloqueado para “miembros”) -->
-<section id="generar">
-  <h1 data-lang="gen_title">Generar contenido con IA</h1>
-
-  <div class="generator-section">
-    <h3 data-lang="gen_video_title">1. Generar vídeo por descripción</h3>
-    <input id="video_text" type="text" placeholder="Descripción..." style="width:100%;padding:12px;border-radius:10px;border:1px solid #d1d5db;">
-    <br><br>
-    <label data-lang="gen_cantidad">Cantidad:</label>
-    <input id="video_count" type="number" min="1" max="10" value="1" style="width:80px;padding:6px;border-radius:8px;border:1px solid #d1d5db;">
-    <br><br>
-    <label data-lang="gen_duracion">Duración (segundos):</label>
-    <input id="video_time" type="number" min="5" max="30" value="10" style="width:80px;padding:6px;border-radius:8px;border:1px solid #d1d5db;">
-    <br><br>
-    <button class="btn-primary-large" onclick="fakeVideoGen()" data-lang="gen_btn_video">Generar vídeo</button>
-    <div class="result-box" id="video_result"></div>
-  </div>
-
-  <div class="generator-section">
-    <h3 data-lang="gen_img_title">2. Generar imágenes por descripción</h3>
-    <input id="img_text" type="text" placeholder="Descripción..." style="width:100%;padding:12px;border-radius:10px;border:1px solid #d1d5db;">
-    <br><br>
-    <label data-lang="gen_cantidad">Cantidad:</label>
-    <input id="img_count" type="number" min="1" max="10" value="1" style="width:80px;padding:6px;border-radius:8px;border:1px solid #d1d5db;">
-    <br><br>
-    <button class="btn-primary-large" onclick="fakeImgGen()" data-lang="gen_btn_img">Generar imágenes</button>
-    <div class="result-box" id="img_result"></div>
-  </div>
-
-  <div class="generator-section">
-    <h3 data-lang="gen_opt_title">3. Subir imagen y mejorar con IA</h3>
-
-    <div class="upload-box" onclick="document.getElementById('upload_input').click()" data-lang="gen_upload">
-      Clic o arrastra una imagen aquí
-    </div>
-    <input type="file" id="upload_input" style="display:none" accept="image/*" onchange="previewUpload()">
-
-    <br><br>
-    <label data-lang="gen_opt_mode">Tipo de mejora:</label>
-    <select id="opt_mode" style="padding:10px;border-radius:10px;border:1px solid #d1d5db;">
-      <option value="upscale">Upscale 4K</option>
-      <option value="enhance">Enhance</option>
-      <option value="clean">Clean</option>
-      <option value="removebg">Remove BG</option>
-      <option value="style">Stylize</option>
-      <option value="recolor">Recolor</option>
-    </select>
-
-    <br><br>
-    <button class="btn-primary-large" onclick="fakeOptimize()" data-lang="gen_btn_opt">Optimizar</button>
-    <div class="result-box" id="opt_result"></div>
-  </div>
-</section>
-
-<footer>
-  © 2025 Impulso Comercial — <span data-lang="footer_rights">Todos los derechos reservados.</span>
-</footer>
-
-<!-- =========================
-     LANGUAGE + LOGIC + FAKE AI
-==============================-->
-<script>
-/* ------------------------------
-   MULTI-LANGUAGE TEXTS
---------------------------------*/
-const langData = {
-  es: {
-    nav_inicio: "Inicio",
-    nav_ejemplos: "Ejemplos",
-    nav_generar: "Generar",
-    nav_precios: "Precios",
-    nav_contacto: "Contacto",
-    btn_login: "Iniciar sesión",
-    btn_members: "Área de miembros",
-
-    hero_badge: "Vídeo, imagen y texto en minutos",
-    hero_title: "Impulsa tu negocio con vídeos generados por IA",
-    hero_sub: "Crea vídeos promocionales, imágenes y textos para redes sociales sin grabar ni editar. Pensado para restaurantes, gimnasios, tiendas y negocios locales.",
-    hero_btn: "Acceso completo por €19.99 / mes",
-    hero_note: "Sin permanencia. PayPal disponible en la página de pago.",
-
-    examples_eyebrow: "GALERÍA",
-    examples_title: "Cómo podría verse tu negocio",
-    examples_sub: "Algunas ideas de estilos de vídeo y creatividades que puedes generar con Impulso Comercial.",
-    examples_tag_restaurant: "Restaurante",
-    examples_tag_gym: "Gimnasio",
-    examples_tag_warehouse: "Almacén",
-    examples_tag_coffee: "Cafetería",
-    examples_tag_store: "Tienda",
-    examples_tag_beauty: "Estética",
-
-    videos_eyebrow: "VÍDEO DEMO",
-    videos_title: "Ejemplos de vídeos cortos",
-    videos_sub: "Vídeos de 5–15 segundos pensados para historias, anuncios y pantallas dentro de tu negocio.",
-    video1_title: "Promo restaurante",
-    video1_sub: "Menú del día, carta y ambiente en un solo clip.",
-    video2_title: "Promo gimnasio",
-    video2_sub: "Clases, entrenos y oferta de bienvenida.",
-    video3_title: "Almacén / B2B",
-    video3_sub: "Stock, logística y llamada a empresas.",
-
-    price_eyebrow: "PLAN ÚNICO",
-    price_title: "Un solo plan, todo incluido",
-    price_sub: "Sin tecnicismos, sin complicaciones. Pagas una cuota y generas contenido siempre que quieras.",
-    price_badge: "Ideal para negocios locales",
-    price_plan: "Plan Mensual",
-    price_tagline: "Cuota mensual, impuestos no incluidos.",
-    price_item1: "Generación de vídeos cortos con IA.",
-    price_item2: "Imágenes promocionales adaptadas a tu sector.",
-    price_item3: "Mejora automática de tus propias fotos.",
-    price_item4: "Copys listos para redes sociales y anuncios.",
-    price_item5: "Acceso desde móvil u ordenador.",
-    price_btn: "Acceso completo por €19.99 / mes",
-    paypal_info: "PayPal disponible en la página de pago.",
-
-    contact_eyebrow: "CONTACTO",
-    contact_title: "¿Tienes dudas o un caso especial?",
-    contact_sub: "Cuéntame qué tipo de negocio tienes y qué tipo de contenido quieres crear. Te responderé personalmente.",
-    contact_text: "Escríbeme un correo y te responderé lo antes posible con una propuesta adaptada a tu negocio.",
-
-    gen_title: "Generar contenido con IA",
-    gen_video_title: "1. Generar vídeo por descripción",
-    gen_cantidad: "Cantidad:",
-    gen_duracion: "Duración (segundos):",
-    gen_btn_video: "Generar vídeo",
-    gen_img_title: "2. Generar imágenes por descripción",
-    gen_btn_img: "Generar imágenes",
-    gen_opt_title: "3. Subir imagen y mejorar con IA",
-    gen_upload: "Clic o arrastra una imagen aquí",
-    gen_opt_mode: "Tipo de mejora:",
-    gen_btn_opt: "Optimizar",
-
-    footer_rights: "Todos los derechos reservados."
-  },
-
-  en: {
-    nav_inicio: "Home",
-    nav_ejemplos: "Examples",
-    nav_generar: "Generate",
-    nav_precios: "Pricing",
-    nav_contacto: "Contact",
-    btn_login: "Log in",
-    btn_members: "Members area",
-
-    hero_badge: "Video, image and copy in minutes",
-    hero_title: "Boost your business with AI-generated videos",
-    hero_sub: "Create promotional videos, images and copy for social media without filming or editing. Designed for restaurants, gyms, shops and local businesses.",
-    hero_btn: "Full access for €19.99 / month",
-    hero_note: "No long-term contract. PayPal available at checkout.",
-
-    examples_eyebrow: "GALLERY",
-    examples_title: "How your business could look",
-    examples_sub: "Some styles of videos and creatives you can generate with Impulso Comercial.",
-    examples_tag_restaurant: "Restaurant",
-    examples_tag_gym: "Gym",
-    examples_tag_warehouse: "Warehouse",
-    examples_tag_coffee: "Coffee shop",
-    examples_tag_store: "Store",
-    examples_tag_beauty: "Beauty",
-
-    videos_eyebrow: "VIDEO DEMO",
-    videos_title: "Short video examples",
-    videos_sub: "5–15s clips for stories, ads and in-store screens.",
-    video1_title: "Restaurant promo",
-    video1_sub: "Daily menu, menu highlights and atmosphere.",
-    video2_title: "Gym promo",
-    video2_sub: "Classes, training and welcome offer.",
-    video3_title: "Warehouse / B2B",
-    video3_sub: "Stock, logistics and call to companies.",
-
-    price_eyebrow: "SINGLE PLAN",
-    price_title: "One plan, all included",
-    price_sub: "No jargon, no complications. One fee, unlimited content.",
-    price_badge: "Ideal for local businesses",
-    price_plan: "Monthly plan",
-    price_tagline: "Monthly fee, VAT not included.",
-    price_item1: "AI-generated short videos.",
-    price_item2: "Promotional images tailored to your sector.",
-    price_item3: "Automatic enhancement of your photos.",
-    price_item4: "Copy ready for ads and social media.",
-    price_item5: "Access from mobile or desktop.",
-    price_btn: "Full access for €19.99 / month",
-    paypal_info: "PayPal available at checkout.",
-
-    contact_eyebrow: "CONTACT",
-    contact_title: "Questions or special use case?",
-    contact_sub: "Tell me what kind of business you have and what content you want to create.",
-    contact_text: "Send me an email and I’ll reply as soon as possible with a proposal tailored to your business.",
-
-    gen_title: "Generate AI content",
-    gen_video_title: "1. Generate video from description",
-    gen_cantidad: "Quantity:",
-    gen_duracion: "Duration (seconds):",
-    gen_btn_video: "Generate video",
-    gen_img_title: "2. Generate images from description",
-    gen_btn_img: "Generate images",
-    gen_opt_title: "3. Upload an image and enhance with AI",
-    gen_upload: "Click or drag an image here",
-    gen_opt_mode: "Enhancement type:",
-    gen_btn_opt: "Enhance",
-
-    footer_rights: "All rights reserved."
-  },
-
-  zh: {
-    nav_inicio: "首页",
-    nav_ejemplos: "示例",
-    nav_generar: "生成内容",
-    nav_precios: "价格",
-    nav_contacto: "联系",
-    btn_login: "登录",
-    btn_members: "会员中心",
-
-    hero_badge: "几分钟内生成视频、图片和文案",
-    hero_title: "用 AI 宣传视频助力您的生意增长",
-    hero_sub: "无需拍摄和剪辑，就能为餐馆、健身房、门店等本地生意生成宣传视频、图片和社媒文案。",
-    hero_btn: "€19.99 / 月 全部功能",
-    hero_note: "无长期合约。支付页面支持 PayPal。",
-
-    examples_eyebrow: "案例图库",
-    examples_title: "你的生意可以呈现的样子",
-    examples_sub: "这些是可以通过 Impulso Comercial 生成的部分风格示例。",
-    examples_tag_restaurant: "餐厅",
-    examples_tag_gym: "健身房",
-    examples_tag_warehouse: "仓库",
-    examples_tag_coffee: "咖啡店",
-    examples_tag_store: "门店",
-    examples_tag_beauty: "美容",
-
-    videos_eyebrow: "视频示例",
-    videos_title: "短视频案例",
-    videos_sub: "5–15 秒短视频，适合做故事、广告和店内屏幕。",
-    video1_title: "餐厅宣传",
-    video1_sub: "一天菜单、环境和特色菜合集。",
-    video2_title: "健身房宣传",
-    video2_sub: "课程、训练场景和优惠活动。",
-    video3_title: "仓储 / B2B",
-    video3_sub: "库存、物流和企业客户宣传。",
-
-    price_eyebrow: "单一方案",
-    price_title: "一个方案，全部功能",
-    price_sub: "不玩概念、不搞复杂。每月一口价，随时生成内容。",
-    price_badge: "适合本地商家",
-    price_plan: "月度会员",
-    price_tagline: "按月收费，不含增值税。",
-    price_item1: "AI 生成短宣传视频。",
-    price_item2: "适配你行业的宣传图片。",
-    price_item3: "自动优化你上传的照片。",
-    price_item4: "适合广告和社媒的文案。",
-    price_item5: "手机和电脑都可访问。",
-    price_btn: "€19.99 / 月 开通全部功能",
-    paypal_info: "支付页面支持 PayPal。",
-
-    contact_eyebrow: "联系",
-    contact_title: "有疑问或特殊需求？",
-    contact_sub: "告诉我你做什么生意，需要什么类型的内容，我会给你具体建议。",
-    contact_text: "可以直接给我发邮件，我会尽快根据你的业务情况做出方案回复。",
-
-    gen_title: "AI 内容生成中心",
-    gen_video_title: "1. 根据描述生成视频",
-    gen_cantidad: "数量：",
-    gen_duracion: "时长（秒）：",
-    gen_btn_video: "生成视频",
-    gen_img_title: "2. 根据描述生成图片",
-    gen_btn_img: "生成图片",
-    gen_opt_title: "3. 上传图片并用 AI 增强",
-    gen_upload: "点击或拖入图片上传",
-    gen_opt_mode: "增强方式：",
-    gen_btn_opt: "开始增强",
-
-    footer_rights: "保留所有权利。"
-  }
-};
-
-document.getElementById("langSelect").addEventListener("change", function () {
-  setLang(this.value);
-});
-
-/* 默认西班牙语 */
-setLang("es");
-
-function setLang(l) {
-  document.querySelectorAll("[data-lang]").forEach(el => {
-    const key = el.dataset.lang;
-    if (langData[l][key]) {
-      el.textContent = langData[l][key];
+    // Scroll suave
+    function scrollToSection(id) {
+      const el = document.getElementById(id);
+      if (el) {
+        el.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
     }
-  });
-}
 
-/* ------------------------------
-   PAGE NAV
---------------------------------*/
-function scrollToSection(id) {
-  const el = document.getElementById(id);
-  if (el) {
-    el.scrollIntoView({ behavior: "smooth" });
-  }
-}
+    // Hero 切换 图片/视频
+    const heroToggleImage = document.getElementById("heroToggleImage");
+    const heroToggleVideo = document.getElementById("heroToggleVideo");
+    const heroPreviewImage = document.getElementById("heroPreviewImage");
+    const heroPreviewVideo = document.getElementById("heroPreviewVideo");
 
-/* ------------------------------
-   FAKE LOGIN / MEMBERS
---------------------------------*/
-function fakeLogin() {
-  alert("La función de inicio de sesión estará disponible en una próxima versión. De momento, el acceso se gestiona manualmente.");
-}
-
-function fakeMembers() {
-  alert("Área de miembros disponible para cuentas activas. Esta demo aún no tiene login real.");
-}
-
-/* ------------------------------
-   MEMBER ACCESS LOCK
---------------------------------*/
-/* 初期手动设置会员：
-   在浏览器控制台输入：
-   localStorage.setItem("premium", "true")
-*/
-function goGenerar() {
-  if (localStorage.getItem("premium") === "true") {
-    // Ocultar secciones principales
-    document.querySelectorAll(".main-section, .hero").forEach(sec => {
-      sec.style.display = "none";
+    heroToggleImage.addEventListener("click", () => {
+      heroToggleImage.classList.add("active");
+      heroToggleVideo.classList.remove("active");
+      heroPreviewImage.style.display = "block";
+      heroPreviewVideo.style.display = "none";
     });
-    document.getElementById("generar").style.display = "block";
-    window.scrollTo(0, 0);
-  } else {
-    window.open("https://buy.stripe.com/test_aFa14g2jI3BR37u6Ma5c400", "_blank");
-  }
-}
 
-/* ------------------------------
-   FAKE AI GENERATORS
-   (以后可以改成真实 OpenAI 调用)
---------------------------------*/
-function fakeVideoGen() {
-  document.getElementById("video_result").innerHTML =
-    "<p>Generando vídeo...</p>";
-  setTimeout(() => {
-    document.getElementById("video_result").innerHTML =
-      "<video controls src='https://samplelib.com/lib/preview/mp4/sample-5s.mp4'></video>";
-  }, 2000);
-}
+    heroToggleVideo.addEventListener("click", () => {
+      heroToggleVideo.classList.add("active");
+      heroToggleImage.classList.remove("active");
+      heroPreviewImage.style.display = "none";
+      heroPreviewVideo.style.display = "block";
+      heroPreviewVideo.play().catch(() => {});
+    });
 
-function fakeImgGen() {
-  document.getElementById("img_result").innerHTML =
-    "<p>Generando imágenes...</p>";
-  setTimeout(() => {
-    document.getElementById("img_result").innerHTML =
-      "<img src='https://picsum.photos/800/500?random=1'>";
-  }, 2000);
-}
+    // 初始状态：显示图片
+    heroToggleImage.click();
 
-let uploadedImg = "";
-function previewUpload() {
-  const file = document.getElementById("upload_input").files[0];
-  if (!file) return;
-  const reader = new FileReader();
-  reader.onload = function (e) {
-    uploadedImg = e.target.result;
-    document.querySelector(".upload-box").innerHTML =
-      "<img src='" + uploadedImg + "' style='max-width:100%;border-radius:16px;'>";
-  };
-  reader.readAsDataURL(file);
-}
+    // 生成 demo（模拟）
+    const generateBtn = document.getElementById("generateBtn");
+    const promptInput = document.getElementById("promptInput");
+    const typeSelect = document.getElementById("typeSelect");
+    const fileInput = document.getElementById("fileInput");
+    const resultsBox = document.getElementById("resultsBox");
+    const resultsLabel = document.getElementById("resultsLabel");
+    const resultsPlaceholder = document.getElementById("resultsPlaceholder");
+    const resultImage = document.getElementById("resultImage");
+    const resultVideo = document.getElementById("resultVideo");
 
-function fakeOptimize() {
-  if (!uploadedImg) {
-    alert("Sube una imagen primero.");
-    return;
-  }
-  document.getElementById("opt_result").innerHTML =
-    "<p>Procesando...</p>";
-  setTimeout(() => {
-    document.getElementById("opt_result").innerHTML =
-      "<img src='https://picsum.photos/800/500?random=2'>";
-  }, 2000);
-}
-</script>
+    let uploadedPreview = "";
 
+    // 本地预览上传图片（不会发出去）
+    fileInput.addEventListener("change", (e) => {
+      const file = e.target.files && e.target.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = (ev) => {
+        uploadedPreview = ev.target.result;
+      };
+      reader.readAsDataURL(file);
+    });
+
+    generateBtn.addEventListener("click", () => {
+      const type = typeSelect.value;
+      const prompt = promptInput.value.trim();
+
+      generateBtn.disabled = true;
+      generateBtn.textContent = "Generando demo…";
+
+      resultsBox.classList.remove("ready");
+      resultsPlaceholder.style.display = "block";
+      resultImage.style.display = "none";
+      resultVideo.style.display = "none";
+      resultsLabel.textContent = "Procesando con IA (simulado)…";
+
+      setTimeout(() => {
+        // 这里只是 demo：真实接 OpenAI API 需要在后台做，避免暴露 API Key
+        resultsBox.classList.add("ready");
+        resultsPlaceholder.style.display = "none";
+
+        if (type === "image") {
+          resultVideo.pause();
+          resultVideo.removeAttribute("src");
+          resultVideo.load();
+
+          if (uploadedPreview) {
+            resultImage.src = uploadedPreview;
+          } else {
+            resultImage.src =
+              "https://images.pexels.com/photos/1181675/pexels-photo-1181675.jpeg?auto=compress&cs=tinysrgb&w=1200";
+          }
+          resultImage.style.display = "block";
+          resultsLabel.textContent = "Imagen demo generada";
+        } else {
+          resultImage.removeAttribute("src");
+          resultImage.style.display = "none";
+
+          resultVideo.src =
+            "https://videos.pexels.com/video-files/6898855/6898855-uhd_2560_1440_25fps.mp4";
+          resultVideo.style.display = "block";
+          resultVideo
+            .play()
+            .catch(() => {});
+          resultsLabel.textContent = "Video demo generado";
+        }
+
+        if (!prompt) {
+          console.log(
+            "Sugerencia: añade un prompt para que la IA entienda mejor tu caso."
+          );
+        }
+
+        generateBtn.disabled = false;
+        generateBtn.textContent = "Generar demo (simulado)";
+      }, 1500);
+    });
+  </script>
 </body>
 </html>
