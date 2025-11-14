@@ -94,7 +94,7 @@
     }
 
     /* ------------------------------
-       NAV
+       NAV (DESKTOP + MOBILE)
     ------------------------------ */
     header {
       position: sticky;
@@ -257,6 +257,45 @@
       font-weight: 600;
     }
 
+    /* 汉堡按钮 */
+    .menu-toggle {
+      display: none;
+      border-radius: var(--radius-pill);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      background: rgba(15, 15, 25, 0.8);
+      color: var(--text-main);
+      padding: 6px 11px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    /* 手机下拉菜单容器 */
+    .mobile-nav {
+      display: none;
+      position: fixed;
+      top: var(--nav-height);
+      right: 0;
+      left: 0;
+      background: rgba(5, 5, 9, 0.98);
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+      padding: 16px 20px 20px;
+      z-index: 9;
+      display: none;
+      flex-direction: column;
+      gap: 10px;
+      font-size: 14px;
+    }
+
+    .mobile-nav a,
+    .mobile-nav button {
+      width: 100%;
+      text-align: left;
+    }
+
+    .mobile-nav.open {
+      display: flex;
+    }
+
     /* ------------------------------
        LAYOUT WRAPPER
     ------------------------------ */
@@ -306,7 +345,7 @@
 
     .hero-title {
       font-size: 40px;
-      line-height: 1.1;
+      line-height: 1.15;
       letter-spacing: -0.03em;
       margin: 0 0 12px;
     }
@@ -544,7 +583,8 @@
 
     textarea,
     select,
-    input[type="file"] {
+    input[type="file"],
+    input[type="text"] {
       width: 100%;
       border-radius: 12px;
       border: 1px solid rgba(148, 163, 184, 0.35);
@@ -554,11 +594,16 @@
       padding: 8px 9px;
       outline: none;
       resize: vertical;
+      min-height: 40px;
+    }
+
+    textarea {
       min-height: 70px;
     }
 
     textarea:focus,
-    select:focus {
+    select:focus,
+    input[type="text"]:focus {
       border-color: var(--accent);
       box-shadow: 0 0 0 1px rgba(79, 124, 255, 0.4);
     }
@@ -779,22 +824,31 @@
     @media (max-width: 900px) {
       .hero,
       .generate-layout,
-      .examples-grid,
-      .pricing-grid,
       .contact-layout {
         grid-template-columns: minmax(0, 1fr);
+      }
+
+      .examples-grid,
+      .pricing-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
       }
 
       .hero {
         margin-top: 14px;
       }
 
-      .nav-links {
+      .page {
+        padding-top: 20px;
+      }
+
+      .nav-links,
+      .nav-right {
         display: none;
       }
 
-      .page {
-        padding-top: 20px;
+      .menu-toggle {
+        display: inline-flex;
+        margin-left: auto;
       }
     }
 
@@ -805,6 +859,7 @@
 
       .hero-title {
         font-size: 30px;
+        line-height: 1.2;
       }
 
       .examples-grid,
@@ -816,250 +871,26 @@
         margin-bottom: 60px;
       }
     }
-    /* ====== MOBILE RESPONSIVE ====== */
-
-@media (max-width: 768px) {
-
-    /* NAVBAR 变成更紧凑 */
-    .apple-nav {
-        padding: 12px 20px;
-    }
-
-    .apple-nav nav {
-        display: none;
-    }
-
-    /* 手机汉堡菜单 */
-    .menu-toggle {
-        display: block;
-        cursor: pointer;
-        font-size: 26px;
-        user-select: none;
-    }
-
-    /* 手机展开菜单 */
-    .mobile-nav {
-        display: none;
-        position: absolute;
-        top: 70px;
-        right: 20px;
-        background: rgba(255, 255, 255, 0.9);
-        backdrop-filter: blur(10px);
-        border-radius: 12px;
-        padding: 15px 20px;
-        box-shadow: 0 4px 20px rgba(0,0,0,0.15);
-    }
-.mobile-nav.is-open {
-    display: block;
-}
-
-    .mobile-nav a,
-    .mobile-nav button {
-        display: block;
-        margin: 10px 0;
-        text-align: right;
-    }
-
-    /* HERO 内容缩小 */
-    .hero-content h1 {
-        font-size: 36px;
-        line-height: 42px;
-    }
-
-    .hero-content p {
-        font-size: 16px;
-        margin-bottom: 20px;
-        padding: 0 20px;
-    }
-
-    .hero-btn {
-        font-size: 16px;
-        padding: 12px 24px;
-    }
-}
-/* 手机汉堡菜单按钮 */
-.menu-toggle {
-    display: none;
-    font-size: 28px;
-    cursor: pointer;
-}
-
-/* 手机端下拉菜单 */
-.mobile-nav {
-    display: none;
-    position: absolute;
-    top: 70px;
-    right: 20px;
-    background: rgba(255,255,255,0.9);
-    backdrop-filter: blur(10px);
-    padding: 20px;
-    border-radius: 12px;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-}
-
-.mobile-nav a,
-.mobile-nav button {
-    display: block;
-    margin-bottom: 12px;
-}
-
-/* ------- 手机屏幕适配 ------- */
-@media (max-width: 768px) {
-
-    /* 隐藏桌面导航 */
-    .apple-nav nav {
-        display: none;
-    }
-
-    /* 显示汉堡按钮 */
-    .menu-toggle {
-        display: block;
-    }
-}
-
   </style>
 </head>
 
 <body>
- <!-- ======== Apple Style Hero Section ======== -->
+  <!-- 背景视频（可以换成你自己的 mp4） -->
+  <video
+    class="hero-video"
+    autoplay
+    muted
+    loop
+    playsinline
+    src="https://videos.pexels.com/video-files/6898855/6898855-uhd_2560_1440_25fps.mp4">
+  </video>
+  <div class="overlay-gradient"></div>
 
-<header class="apple-nav">
-  <!-- 手机汉堡菜单按钮 -->
-<div class="menu-toggle">☰</div>
-
-<!-- 手机端下拉菜单 -->
-<div class="mobile-nav">
-    <a href="#inicio">Inicio</a>
-    <a href="#ejemplos">Ejemplos</a>
-    <a href="#generar">Generar</a>
-    <a href="#precios">Precios</a>
-    <a href="#contacto">Contacto</a>
-    <button class="login-btn">Iniciar sesión</button>
-    <button class="lang-btn">🌐 ES</button>
-</div>
-
-    <div class="logo">impulso comercial</div>
-    <nav>
-        <a href="#inicio">Inicio</a>
-        <a href="#ejemplos">Ejemplos</a>
-        <a href="#generar">Generar</a>
-        <a href="#precios">Precios</a>
-        <a href="#contacto">Contacto</a>
-        <button class="login-btn">Iniciar sesión</button>
-        <button class="lang-btn">🌐 ES</button>
-    </nav>
-</header>
-
-<section class="hero">
-    <video autoplay muted loop class="hero-video">
-        <source src="assets/apple-temp.mp4" type="video/mp4">
-    </video>
-
-    <div class="hero-content">
-        <h1>Impulsa tu negocio con IA</h1>
-        <p>Genera imágenes, videos y contenido profesional al estilo Apple.</p>
-        <button class="hero-btn">Comenzar</button>
-    </div>
-</section>
-
-<!-- ======== Apple Style CSS ======== -->
-<style>
-/* NAVBAR */
-.apple-nav {
-    position: fixed;
-    top: 0;
-    width: 100%;
-    backdrop-filter: blur(12px);
-    background: rgba(255, 255, 255, 0.25);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 18px 40px;
-    z-index: 1000;
-}
-
-.apple-nav .logo {
-    font-size: 20px;
-    font-weight: 600;
-    letter-spacing: 0.5px;
-}
-
-.apple-nav nav a {
-    margin: 0 18px;
-    text-decoration: none;
-    color: #111;
-    font-size: 15px;
-}
-
-.apple-nav button {
-    margin-left: 15px;
-    padding: 8px 16px;
-    border: none;
-    border-radius: 40px;
-    cursor: pointer;
-    font-size: 14px;
-}
-
-.login-btn {
-    background: #111;
-    color: white;
-}
-
-.lang-btn {
-    background: rgba(255, 255, 255, 0.6);
-}
-
-/* HERO SECTION */
-.hero {
-    position: relative;
-    width: 100%;
-    height: 100vh;
-    overflow: hidden;
-}
-
-.hero-video {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    filter: brightness(0.6);
-}
-
-.hero-content {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    text-align: center;
-    color: white;
-}
-
-.hero-content h1 {
-    font-size: 64px;
-    font-weight: 600;
-    margin-bottom: 20px;
-}
-
-.hero-content p {
-    font-size: 22px;
-    margin-bottom: 30px;
-}
-
-.hero-btn {
-    background: white;
-    color: #111;
-    padding: 14px 32px;
-    border-radius: 40px;
-    font-size: 18px;
-    cursor: pointer;
-}
-</style>
-
-  <!-- NAV -->
+  <!-- NAV PRINCIPAL -->
   <header>
     <div class="nav-inner">
       <div class="nav-left">
         <div class="logo-mark">
-          <!-- 用你的 logo.png 也可以：<img src="assets/logo.png" alt="Logo" /> -->
           <img src="assets/logo.png" alt="Impulso logo" />
         </div>
         <div class="logo-text">
@@ -1088,8 +919,24 @@
         <button class="btn-ghost" type="button">Iniciar sesión</button>
         <button class="btn-primary" type="button">Centro de miembros</button>
       </div>
+
+      <!-- 汉堡按钮（手机端） -->
+      <button class="menu-toggle" type="button" aria-label="Abrir menú">
+        ☰
+      </button>
     </div>
   </header>
+
+  <!-- 手机下拉菜单 -->
+  <nav class="mobile-nav">
+    <a href="#inicio">Inicio</a>
+    <a href="#ejemplos">Ejemplos</a>
+    <a href="#generar">Generar</a>
+    <a href="#precios">Precios</a>
+    <a href="#contacto">Contacto</a>
+    <button class="btn-ghost" type="button">Iniciar sesión</button>
+    <button class="btn-primary" type="button">Centro de miembros</button>
+  </nav>
 
   <main class="page">
     <!-- HERO -->
@@ -1344,9 +1191,15 @@
             <li>Biblioteca de estilos por canal</li>
             <li>Panel de miembros y permisos</li>
           </ul>
-          <button class="btn-primary price-cta" type="button">
-            Hablar con ventas
-          </button>
+          <!-- Stripe checkout link: usa tu enlace de Stripe -->
+          <a
+            class="btn-primary price-cta"
+            href="https://buy.stripe.com/test_aFa14g2jI3BR37u6Ma5c400"
+            target="_blank"
+            rel="noopener"
+          >
+            Suscribirse ahora
+          </a>
         </article>
 
         <article class="price-card">
@@ -1551,16 +1404,16 @@
         generateBtn.textContent = "Generar demo (simulado)";
       }, 1500);
     });
+
     // 手机导航展开/收起
-const menuToggle = document.querySelector('.menu-toggle');
-const mobileNav  = document.querySelector('.mobile-nav');
+    const menuToggle = document.querySelector(".menu-toggle");
+    const mobileNav = document.querySelector(".mobile-nav");
 
-if (menuToggle && mobileNav) {
-    menuToggle.addEventListener('click', () => {
-        mobileNav.classList.toggle('is-open');
-    });
-}
-
+    if (menuToggle && mobileNav) {
+      menuToggle.addEventListener("click", () => {
+        mobileNav.classList.toggle("open");
+      });
+    }
   </script>
 </body>
 </html>
