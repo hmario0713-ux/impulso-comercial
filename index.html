@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Impulso Comercial</title>
+
+<!-- Apple 风格字体 -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+/* ------------------------------
+   GLOBAL APPLE STYLE
+--------------------------------*/
+body {
+  margin: 0;
+  font-family: "Inter", sans-serif;
+  background: #ffffff;
+  color: #000;
+  overflow-x: hidden;
+}
+header {
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: rgba(255,255,255,0.7);
+  backdrop-filter: blur(15px);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px 40px;
+  z-index: 999;
+  border-bottom: 1px solid rgba(0,0,0,0.05);
+}
+nav a {
+  margin: 0 18px;
+  text-decoration: none;
+  color: black;
+  font-weight: 500;
+  cursor: pointer;
+}
+nav a:hover {
+  opacity: 0.6;
+}
+#langSelect {
+  padding: 6px 10px;
+  border-radius: 6px;
+  border: 1px solid #ddd;
+}
+
+/* HERO */
+section#hero {
+  padding-top: 160px;
+  text-align: center;
+  padding-bottom: 120px;
+}
+#hero h1 {
+  font-size: 48px;
+  font-weight: 700;
+  max-width: 700px;
+  margin: 0 auto 20px auto;
+}
+#hero p {
+  font-size: 20px;
+  max-width: 620px;
+  margin: 0 auto 30px auto;
+  color: #555;
+}
+.btn-primary {
+  background: black;
+  color: white;
+  padding: 16px 28px;
+  border-radius: 12px;
+  font-size: 18px;
+  text-decoration: none;
+  display: inline-block;
+  cursor: pointer;
+}
+.btn-primary:hover {
+  opacity: 0.8;
+}
+
+/* PRECIOS */
+#precios {
+  padding: 80px 40px;
+  text-align: center;
+}
+.price-box {
+  max-width: 420px;
+  margin: 0 auto;
+  padding: 40px;
+  border-radius: 20px;
+  background: #f7f7f7;
+  border: 1px solid #eee;
+}
+.price-box h2 {
+  font-size: 32px;
+}
+.price-amount {
+  font-size: 40px;
+  font-weight: bold;
+  margin: 20px 0;
+}
+
+/* GENERAR PAGE */
+#generar {
+  display: none;
+  padding: 120px 40px;
+}
+.generator-section {
+  max-width: 800px;
+  margin: 0 auto 60px auto;
+  padding: 30px;
+  border-radius: 20px;
+  background: #fafafa;
+  border: 1px solid #eee;
+}
+.generator-section h3 {
+  margin-top: 0;
+}
+
+/* 上传图片 */
+.upload-box {
+  border: 2px dashed #aaa;
+  padding: 40px;
+  text-align: center;
+  border-radius: 15px;
+  cursor: pointer;
+}
+.upload-box:hover {
+  background: #f0f0f0;
+}
+
+/* AI 生成输出 */
+.result-box img, .result-box video {
+  width: 100%;
+  border-radius: 12px;
+  margin-top: 15px;
+}
+
+/* FOOTER */
+footer {
+  padding: 40px;
+  text-align: center;
+  font-size: 14px;
+  color: #777;
+  margin-top: 100px;
+}
+
+/* MOBILE */
+@media(max-width: 700px){
+  #hero h1 { font-size: 34px; }
+  #hero p { font-size: 18px; }
+  .price-box { padding: 30px; }
+}
+</style>
+</head>
+
+
+<body>
+
+<!-- HEADER -->
+<header>
+  <div style="display:flex;align-items:center;">
+    <!-- 使用本地 logo 文件 -->
+    <img src="assets/logo.png" style="height:40px;margin-right:10px;">
+    <strong style="font-size:20px;">Impulso Comercial</strong>
+  </div>
+
+  <nav>
+    <a onclick="scrollToSection('hero')" data-lang="nav_inicio">Inicio</a>
+    <a onclick="scrollToSection('precios')" data-lang="nav_precios">Precios</a>
+    <a onclick="goGenerar()" data-lang="nav_generar">Generar contenido</a>
+  </nav>
+
+  <select id="langSelect">
+    <option value="es">ES</option>
+    <option value="en">EN</option>
+    <option value="zh">中文</option>
+  </select>
+</header>
+
+
+<!-- HERO -->
+<section id="hero">
+  <h1 data-lang="hero_title">Impulsa tu negocio con vídeos generados por IA</h1>
+  <p data-lang="hero_sub">
+    Crea vídeos promocionales, imágenes y contenido profesional en pocos minutos.
+  </p>
+
+  <a class="btn-primary" href="https://buy.stripe.com/test_aFa14g2jI3BR37u6Ma5c400" target="_blank" data-lang="hero_btn">
+    Acceso completo por €19.99 / mes
+  </a>
+</section>
+
+
+<!-- PRECIOS -->
+<section id="precios">
+  <h2 data-lang="price_title">Precios</h2>
+
+  <div class="price-box">
+    <h2 data-lang="price_plan">Plan Mensual</h2>
+    <div class="price-amount">€19.99 / mes</div>
+    <p data-lang="price_desc">Acceso ilimitado a generación de vídeos, imágenes y mejoras por IA.</p>
+
+    <a class="btn-primary" 
+       href="https://buy.stripe.com/test_aFa14g2jI3BR37u6Ma5c400" 
+       target="_blank" 
+       data-lang="price_btn">
+       Acceso completo
+    </a>
+
+    <p style="margin-top:15px;font-size:14px;" data-lang="paypal_info">
+      PayPal disponible en la página de pago
+    </p>
+  </div>
+</section>
+
+
+<!-- GENERAR CONTENT PAGE -->
+<section id="generar">
+
+  <h1 data-lang="gen_title">Generar contenido con IA</h1>
+
+  <div class="generator-section">
+    <h3 data-lang="gen_video_title">1. Generar vídeo por descripción</h3>
+    <input id="video_text" type="text" placeholder="Descripción..." style="width:100%;padding:12px;border-radius:10px;border:1px solid #ccc;">
+    
+    <br><br>
+    <label data-lang="gen_cantidad">Cantidad:</label>
+    <input id="video_count" type="number" min="1" max="10" value="1" style="width:80px;padding:6px;border-radius:8px;border:1px solid #ccc;">
+
+    <br><br>
+    <label data-lang="gen_duracion">Duración (segundos):</label>
+    <input id="video_time" type="number" min="5" max="30" value="10" style="width:80px;padding:6px;border-radius:8px;border:1px solid #ccc;">
+
+    <br><br>
+    <button class="btn-primary" onclick="fakeVideoGen()" data-lang="gen_btn_video">Generar vídeo</button>
+    
+    <div class="result-box" id="video_result"></div>
+  </div>
+
+
+
+  <div class="generator-section">
+    <h3 data-lang="gen_img_title">2. Generar imágenes por descripción</h3>
+    <input id="img_text" type="text" placeholder="Descripción..." style="width:100%;padding:12px;border-radius:10px;border:1px solid #ccc;">
+    
+    <br><br>
+    <label data-lang="gen_cantidad">Cantidad:</label>
+    <input id="img_count" type="number" min="1" max="10" value="1" style="width:80px;padding:6px;border-radius:8px;border:1px solid #ccc;">
+
+    <br><br>
+    <button class="btn-primary" onclick="fakeImgGen()" data-lang="gen_btn_img">Generar imágenes</button>
+
+    <div class="result-box" id="img_result"></div>
+  </div>
+
+
+  <div class="generator-section">
+    <h3 data-lang="gen_opt_title">3. Subir imagen y mejorar con IA</h3>
+
+    <div class="upload-box" onclick="document.getElementById('upload_input').click()" data-lang="gen_upload">
+      Clic o arrastra una imagen aquí
+    </div>
+    <input type="file" id="upload_input" style="display:none" accept="image/*" onchange="previewUpload()">
+
+    <br><br>
+    <label data-lang="gen_opt_mode">Tipo de mejora:</label>
+    <select id="opt_mode" style="padding:10px;border-radius:10px;border:1px solid #ccc;">
+      <option value="upscale">Upscale 4K</option>
+      <option value="enhance">Enhance</option>
+      <option value="clean">Clean</option>
+      <option value="removebg">Remove BG</option>
+      <option value="style">Stylize</option>
+      <option value="recolor">Recolor</option>
+    </select>
+
+    <br><br>
+    <button class="btn-primary" onclick="fakeOptimize()" data-lang="gen_btn_opt">Optimizar</button>
+    <div class="result-box" id="opt_result"></div>
+  </div>
+</section>
+
+
+<footer>© 2025 Impulso Comercial — Todos los derechos reservados.</footer>
+
+
+
+<!-- =========================
+     LANGUAGE + LOGIC + FAKE AI
+==============================-->
+<script>
+/* ------------------------------
+   MULTI-LANGUAGE SYSTEM
+--------------------------------*/
+const langData = {
+  es: {
+    nav_inicio: "Inicio",
+    nav_precios: "Precios",
+    nav_generar: "Generar contenido",
+
+    hero_title: "Impulsa tu negocio con vídeos generados por IA",
+    hero_sub: "Crea vídeos promocionales, imágenes y contenido profesional en pocos minutos.",
+    hero_btn: "Acceso completo por €19.99 / mes",
+
+    price_title: "Precios",
+    price_plan: "Plan Mensual",
+    price_desc: "Acceso ilimitado a generación de vídeos, imágenes y mejoras por IA.",
+    price_btn: "Acceso completo",
+    paypal_info: "PayPal disponible en la página de pago",
+
+    gen_title: "Generar contenido con IA",
+    gen_video_title: "1. Generar vídeo por descripción",
+    gen_cantidad: "Cantidad:",
+    gen_duracion: "Duración (segundos):",
+    gen_btn_video: "Generar vídeo",
+
+    gen_img_title: "2. Generar imágenes por descripción",
+    gen_btn_img: "Generar imágenes",
+
+    gen_opt_title: "3. Subir imagen y mejorar con IA",
+    gen_upload: "Clic o arrastra una imagen aquí",
+    gen_opt_mode: "Tipo de mejora:",
+    gen_btn_opt: "Optimizar"
+  },
+
+  en: {
+    nav_inicio: "Home",
+    nav_precios: "Pricing",
+    nav_generar: "Generate content",
+
+    hero_title: "Boost your business with AI-generated videos",
+    hero_sub: "Create promotional videos, images and professional content in minutes.",
+    hero_btn: "Full access for €19.99 / month",
+
+    price_title: "Pricing",
+    price_plan: "Monthly Plan",
+    price_desc: "Unlimited AI video generation, image creation and enhancements.",
+    price_btn: "Get full access",
+    paypal_info: "PayPal available at checkout",
+
+    gen_title: "Generate AI content",
+    gen_video_title: "1. Generate video from text",
+    gen_cantidad: "Quantity:",
+    gen_duracion: "Duration (seconds):",
+    gen_btn_video: "Generate video",
+
+    gen_img_title: "2. Generate images from text",
+    gen_btn_img: "Generate images",
+
+    gen_opt_title: "3. Upload image & enhance with AI",
+    gen_upload: "Click or drag an image here",
+    gen_opt_mode: "Enhancement type:",
+    gen_btn_opt: "Enhance"
+  },
+
+  zh: {
+    nav_inicio: "首页",
+    nav_precios: "价格",
+    nav_generar: "生成内容",
+
+    hero_title: "用 AI 宣传视频助力您的生意增长",
+    hero_sub: "几分钟即可生成宣传视频、图片和营销内容。",
+    hero_btn: "€19.99 / 月 全部功能",
+
+    price_title: "价格方案",
+    price_plan: "月度会员",
+    price_desc: "无限次生成 AI 视频、图片和增强功能。",
+    price_btn: "开通会员",
+    paypal_info: "支付页面支持 PayPal",
+
+    gen_title: "AI 内容生成中心",
+    gen_video_title: "1. 根据描述生成视频",
+    gen_cantidad: "数量：",
+    gen_duracion: "时长（秒）：",
+    gen_btn_video: "生成视频",
+
+    gen_img_title: "2. 根据描述生成图片",
+    gen_btn_img: "生成图片",
+
+    gen_opt_title: "3. 上传图片并 AI 增强",
+    gen_upload: "点击或拖入图片上传",
+    gen_opt_mode: "增强方式：",
+    gen_btn_opt: "开始增强"
+  }
+};
+
+/* 切换语言 */
+document.getElementById("langSelect").addEventListener("change", function(){
+  setLang(this.value);
+});
+
+/* 默认西班牙语 */
+setLang("es");
+
+function setLang(l){
+  document.querySelectorAll("[data-lang]").forEach(el=>{
+    el.textContent = langData[l][el.dataset.lang];
+  });
+}
+
+
+
+/* ------------------------------
+   PAGE NAVIGATION
+--------------------------------*/
+function scrollToSection(id){
+  document.getElementById(id).scrollIntoView({behavior: "smooth"});
+}
+
+
+
+/* ------------------------------
+   MEMBER ACCESS LOCK
+--------------------------------*/
+/* 初期手动设置会员：
+   在浏览器控制台输入：
+   localStorage.setItem("premium", "true")
+*/
+function goGenerar() {
+  if(localStorage.getItem("premium") === "true"){
+    document.getElementById("hero").style.display = "none";
+    document.getElementById("precios").style.display = "none";
+    document.getElementById("generar").style.display = "block";
+
+    window.scrollTo(0,0);
+  } else {
+    window.open("https://buy.stripe.com/test_aFa14g2jI3BR37u6Ma5c400", "_blank");
+  }
+}
+
+
+
+/* ------------------------------
+   FAKE AI GENERATORS
+   (可随时升级为真实 OpenAI API)
+--------------------------------*/
+function fakeVideoGen(){
+  document.getElementById("video_result").innerHTML =
+    "<p>Generando vídeo...</p>";
+
+  setTimeout(()=>{
+    document.getElementById("video_result").innerHTML =
+      "<video controls src='https://samplelib.com/lib/preview/mp4/sample-5s.mp4'></video>";
+  }, 2000);
+}
+
+function fakeImgGen(){
+  document.getElementById("img_result").innerHTML =
+    "<p>Generando imágenes...</p>";
+
+  setTimeout(()=>{
+    document.getElementById("img_result").innerHTML =
+      "<img src='https://picsum.photos/800/500?random=1'>";
+  }, 2000);
+}
+
+
+let uploadedImg = "";
+function previewUpload(){
+  let file = document.getElementById("upload_input").files[0];
+  let reader = new FileReader();
+  reader.onload = function(e){
+    uploadedImg = e.target.result;
+    document.querySelector(".upload-box").innerHTML =
+      "<img src='"+uploadedImg+"' style='max-width:100%;border-radius:12px;'>";
+  };
+  reader.readAsDataURL(file);
+}
+
+function fakeOptimize(){
+  if(!uploadedImg){
+    alert("Sube una imagen primero.");
+    return;
+  }
+  document.getElementById("opt_result").innerHTML =
+    "<p>Procesando...</p>";
+
+  setTimeout(()=>{
+    document.getElementById("opt_result").innerHTML =
+      "<img src='https://picsum.photos/800/500?random=2'>";
+  }, 2000);
+}
+</script>
+
+</body>
+</html>
