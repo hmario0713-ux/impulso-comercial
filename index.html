@@ -928,6 +928,33 @@
         margin-bottom: 60px;
       }
     }
+    /* Upload icon button */
+.upload-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  border-radius: var(--radius-lg);
+  background: rgba(255,255,255,0.06);
+  cursor: pointer;
+  font-size: 26px;
+  border: 1px solid rgba(255,255,255,0.12);
+  transition: 0.25s ease;
+}
+
+.upload-btn:hover {
+  background: rgba(255,255,255,0.12);
+  border-color: rgba(255,255,255,0.2);
+}
+
+.upload-btn:active {
+  transform: scale(0.97);
+}
+
+.upload-icon {
+  pointer-events: none;
+}
   </style>
 </head>
 
@@ -1252,17 +1279,13 @@
             </div>
           </div>
 
-          <div class="upload-row">
-            <div>
-              <label for="fileInput" data-i18n="generate.uploadLabel">
-                Subir imagen base (opcional)
-              </label>
-              <input id="fileInput" type="file" accept="image/*" />
-            </div>
-            <div class="upload-hint" data-i18n="generate.uploadHint">
-              Ideal para subir tu
-              <br />producto, logo o mockup.
-            </div>
+<div class="upload-row">
+  <label class="upload-btn" for="fileInput">
+    <span class="upload-icon">📎</span>
+  </label>
+  <input id="fileInput" type="file" accept="image/*" hidden />
+</div>
+
           </div>
 
           <button
