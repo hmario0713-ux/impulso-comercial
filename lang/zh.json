@@ -1,0 +1,22 @@
+{
+  "nav": {
+    "inicio": "首页",
+    "ejemplos": "示例",
+    "generar": "生成内容",
+    "precios": "价格",
+    "contacto": "联系",
+    "login": "登录",
+    "centro": "会员中心"
+  },
+
+  "hero": {
+    "pill": "Impulso IA · 现代销售团队的 AI 工具",
+    "title": "AI 生成销售视频与图片。",
+    "subtitle": "几分钟即可启动营销：上传产品、输入你的想法，Impulso 将自动生成适用于社交媒体、广告和落地页的视觉内容。",
+    "btn_start": "立即开始",
+    "btn_examples": "查看真实示例",
+    "meta1": "零代码 · 只需文本与文件",
+    "meta2": "基于 OpenAI · 可快速集成",
+    "meta3": "多渠道 · 社交、网页、演示文稿"
+  }
+}

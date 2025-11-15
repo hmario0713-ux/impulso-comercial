@@ -1,0 +1,22 @@
+{
+  "nav": {
+    "inicio": "Inicio",
+    "ejemplos": "Ejemplos",
+    "generar": "Generar",
+    "precios": "Precios",
+    "contacto": "Contacto",
+    "login": "Iniciar sesión",
+    "centro": "Centro de miembros"
+  },
+
+  "hero": {
+    "pill": "Impulso IA · para equipos comerciales modernos",
+    "title": "Imágenes & videos de venta generados con IA.",
+    "subtitle": "Lanza campañas en minutos: sube tu producto, escribe una idea y deja que Impulso genere visuales listos para redes, anuncios y landing pages.",
+    "btn_start": "Empezar ahora",
+    "btn_examples": "Ver ejemplos reales",
+    "meta1": "0 código · sólo texto y archivos",
+    "meta2": "IA de OpenAI · lista para integrar",
+    "meta3": "Multi-canal · social, web, presentaciones"
+  }
+}

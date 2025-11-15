@@ -69,13 +69,13 @@
     }
 
     /* 背景视频 */
-    .hero-video {
+    .hero-video-bg {
       position: fixed;
       inset: 0;
       width: 100%;
       height: 100%;
       object-fit: cover;
-      opacity: 0.4;
+      opacity: 0.35;
       z-index: 0;
       pointer-events: none;
     }
@@ -94,7 +94,7 @@
     }
 
     /* ------------------------------
-       NAV (DESKTOP + MOBILE)
+       NAV
     ------------------------------ */
     header {
       position: sticky;
@@ -206,6 +206,7 @@
       border: 1px solid rgba(255, 255, 255, 0.16);
       background: rgba(15, 15, 25, 0.75);
       color: var(--text-muted);
+      white-space: nowrap;
     }
 
     .chip b {
@@ -225,6 +226,7 @@
       align-items: center;
       gap: 6px;
       transition: all 0.18s ease-out;
+      white-space: nowrap;
     }
 
     .btn-ghost:hover {
@@ -243,57 +245,114 @@
       transform: translateY(-1px);
     }
 
-    .btn-lang {
-      padding-inline: 10px;
-      font-size: 11px;
+    /* ------- 语言下拉 ------- */
+    .lang-dropdown {
+      position: relative;
     }
 
-    .btn-lang span {
-      opacity: 0.7;
+    .btn-lang-toggle {
+      min-width: 88px;
+      justify-content: center;
     }
 
-    .btn-lang span.active {
-      opacity: 1;
-      font-weight: 600;
+    .lang-toggle-label {
+      font-weight: 500;
     }
 
-    /* 汉堡按钮 */
+    .lang-menu {
+      position: absolute;
+      right: 0;
+      top: calc(100% + 6px);
+      min-width: 160px;
+      background: rgba(15, 15, 25, 0.98);
+      border-radius: 14px;
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      padding: 6px;
+      display: none;
+      flex-direction: column;
+      gap: 4px;
+      box-shadow: 0 18px 45px rgba(0, 0, 0, 0.7);
+      z-index: 20;
+    }
+
+    .lang-menu.open {
+      display: flex;
+    }
+
+    .lang-option {
+      width: 100%;
+      justify-content: flex-start;
+      font-size: 12px;
+      padding: 6px 8px;
+      border-radius: 9px;
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+    }
+
+    .lang-option:hover {
+      background: rgba(31, 41, 55, 0.9);
+      color: #ffffff;
+    }
+
+    .lang-option.active {
+      background: rgba(55, 65, 81, 0.95);
+      color: #e5e7eb;
+    }
+
+    /* ------------------------------
+       MOBILE NAV
+    ------------------------------ */
     .menu-toggle {
       display: none;
-      border-radius: var(--radius-pill);
-      border: 1px solid rgba(255, 255, 255, 0.18);
-      background: rgba(15, 15, 25, 0.8);
-      color: var(--text-main);
-      padding: 6px 11px;
-      font-size: 16px;
+      font-size: 24px;
       cursor: pointer;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      background: rgba(15, 15, 25, 0.9);
+      padding: 6px 10px;
     }
 
-    /* 手机下拉菜单容器 */
     .mobile-nav {
       display: none;
       position: fixed;
-      top: var(--nav-height);
-      right: 0;
-      left: 0;
-      background: rgba(5, 5, 9, 0.98);
-      border-top: 1px solid rgba(255, 255, 255, 0.06);
-      padding: 16px 20px 20px;
-      z-index: 9;
-      display: none;
-      flex-direction: column;
-      gap: 10px;
-      font-size: 14px;
+      top: 64px;
+      right: 16px;
+      left: 16px;
+      border-radius: 16px;
+      background: rgba(15, 15, 25, 0.98);
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      padding: 14px 16px;
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.85);
+      z-index: 30;
     }
 
-    .mobile-nav a,
-    .mobile-nav button {
-      width: 100%;
-      text-align: left;
+    .mobile-nav.is-open {
+      display: block;
     }
 
-    .mobile-nav.open {
+    .mobile-nav-group {
       display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-bottom: 10px;
+    }
+
+    .mobile-nav a {
+      font-size: 14px;
+      color: var(--text-main);
+      padding: 6px 0;
+    }
+
+    .mobile-nav .btn-ghost,
+    .mobile-nav .btn-primary,
+    .mobile-nav .lang-option {
+      width: 100%;
+      justify-content: center;
+    }
+
+    .mobile-nav .lang-option {
+      margin-top: 4px;
     }
 
     /* ------------------------------
@@ -314,7 +373,7 @@
     /* ------------------------------
        HERO
     ------------------------------ */
-    .hero {
+    .hero-layout {
       display: grid;
       grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
       gap: 28px;
@@ -594,11 +653,11 @@
       padding: 8px 9px;
       outline: none;
       resize: vertical;
-      min-height: 40px;
+      min-height: 70px;
     }
 
-    textarea {
-      min-height: 70px;
+    input[type="text"] {
+      min-height: auto;
     }
 
     textarea:focus,
@@ -822,33 +881,32 @@
        RESPONSIVE
     ------------------------------ */
     @media (max-width: 900px) {
-      .hero,
+      .hero-layout,
       .generate-layout,
+      .examples-grid,
+      .pricing-grid,
       .contact-layout {
         grid-template-columns: minmax(0, 1fr);
       }
 
-      .examples-grid,
-      .pricing-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-
-      .hero {
+      .hero-layout {
         margin-top: 14px;
       }
 
-      .page {
-        padding-top: 20px;
+      .nav-links {
+        display: none;
       }
 
-      .nav-links,
       .nav-right {
         display: none;
       }
 
       .menu-toggle {
         display: inline-flex;
-        margin-left: auto;
+      }
+
+      .page {
+        padding-top: 20px;
       }
     }
 
@@ -859,7 +917,6 @@
 
       .hero-title {
         font-size: 30px;
-        line-height: 1.2;
       }
 
       .examples-grid,
@@ -875,133 +932,200 @@
 </head>
 
 <body>
-  <!-- 背景视频（可以换成你自己的 mp4） -->
-  <video
-    class="hero-video"
-    autoplay
-    muted
-    loop
-    playsinline
-    src="https://videos.pexels.com/video-files/6898855/6898855-uhd_2560_1440_25fps.mp4">
+  <!-- 背景视频（可换成自己的视频） -->
+  <video class="hero-video-bg" autoplay muted loop playsinline>
+    <source src="https://videos.pexels.com/video-files/6898855/6898855-uhd_2560_1440_25fps.mp4" type="video/mp4" />
   </video>
   <div class="overlay-gradient"></div>
 
-  <!-- NAV PRINCIPAL -->
+  <!-- NAV -->
   <header>
     <div class="nav-inner">
       <div class="nav-left">
         <div class="logo-mark">
+          <!-- 也可以用自己的 logo.png -->
           <img src="assets/logo.png" alt="Impulso logo" />
         </div>
         <div class="logo-text">
-          <div class="logo-title">Impulso Comercial</div>
-          <div class="logo-sub">Contenido IA para vender más</div>
+          <div class="logo-title" data-i18n="brand.name">Impulso Comercial</div>
+          <div class="logo-sub" data-i18n="brand.tagline">
+            Contenido IA para vender más
+          </div>
         </div>
       </div>
 
       <nav class="nav-links">
-        <a href="#inicio">Inicio</a>
-        <a href="#ejemplos">Ejemplos</a>
-        <a href="#generar">Generar</a>
-        <a href="#precios">Precios</a>
-        <a href="#contacto">Contacto</a>
+        <a href="#inicio" data-i18n="nav.inicio">Inicio</a>
+        <a href="#ejemplos" data-i18n="nav.ejemplos">Ejemplos</a>
+        <a href="#generar" data-i18n="nav.generar">Generar</a>
+        <a href="#precios" data-i18n="nav.precios">Precios</a>
+        <a href="#contacto" data-i18n="nav.contacto">Contacto</a>
       </nav>
 
       <div class="nav-right">
-        <div class="chip">
+        <div class="chip" data-i18n="nav.beta">
           <b>Beta</b>&nbsp;· IA para tu equipo comercial
         </div>
-        <button class="btn-ghost btn-lang" type="button">
-          <span class="active">ES</span>
-          <span>/</span>
-          <span>EN</span>
-        </button>
-        <button class="btn-ghost" type="button">Iniciar sesión</button>
-        <button class="btn-primary" type="button">Centro de miembros</button>
-      </div>
 
-      <!-- 汉堡按钮（手机端） -->
-      <button class="menu-toggle" type="button" aria-label="Abrir menú">
-        ☰
-      </button>
-    </div>
-  </header>
-
-  <!-- 手机下拉菜单 -->
-  <nav class="mobile-nav">
-    <a href="#inicio">Inicio</a>
-    <a href="#ejemplos">Ejemplos</a>
-    <a href="#generar">Generar</a>
-    <a href="#precios">Precios</a>
-    <a href="#contacto">Contacto</a>
-    <button class="btn-ghost" type="button">Iniciar sesión</button>
-    <button class="btn-primary" type="button">Centro de miembros</button>
-  </nav>
-
-  <main class="page">
-    <!-- HERO -->
-    <section id="inicio" class="hero">
-      <div>
-        <div class="pill">
-          <span class="pill-dot"></span>
-          Impulso IA · para equipos comerciales modernos
-        </div>
-
-        <h1 class="hero-title">
-          <span class="hero-gradient">Imágenes & videos de venta</span>
-          <br />generados con IA.
-        </h1>
-
-        <p class="hero-subtitle">
-          Lanza campañas en minutos: sube tu producto, escribe una idea y deja
-          que Impulso genere visuales listos para redes, anuncios y landing
-          pages.
-        </p>
-
-        <div class="hero-actions">
-          <button class="btn-primary" type="button" onclick="scrollToSection('generar')">
-            Empezar ahora
+        <div class="lang-dropdown">
+          <button class="btn-ghost btn-lang-toggle" type="button">
+            🌐 <span class="lang-toggle-label" data-lang-label>ES</span>
           </button>
-          <button class="btn-ghost" type="button" onclick="scrollToSection('ejemplos')">
-            Ver ejemplos reales
-          </button>
-        </div>
-
-        <div class="hero-meta">
-          <span><strong>0 código</strong> · sólo texto y archivos</span>
-          <span><strong>IA de OpenAI</strong> · lista para integrar</span>
-          <span><strong>Multi-canal</strong> · social, web, presentaciones</span>
-        </div>
-      </div>
-
-      <div class="hero-card">
-        <div class="hero-card-header">
-          <span class="hero-card-tag">Demo en vivo</span>
-          <div class="hero-switch">
-            <button id="heroToggleImage" class="active" type="button">Imagen</button>
-            <button id="heroToggleVideo" type="button">Video</button>
+          <div class="lang-menu">
+            <button class="btn-ghost lang-option" type="button" data-lang="es">
+              ES Español
+            </button>
+            <button class="btn-ghost lang-option" type="button" data-lang="en">
+              EN English
+            </button>
+            <button class="btn-ghost lang-option" type="button" data-lang="zh">
+              ZH 中文
+            </button>
           </div>
         </div>
 
-        <div class="prompt-box">
-          <strong>Brief:</strong> anuncio minimalista para un SaaS de
-          automatización, estilo Apple, fondo oscuro y texto claro.
+        <button class="btn-ghost" type="button" data-i18n="nav.login">
+          Iniciar sesión
+        </button>
+        <button class="btn-primary" type="button" data-i18n="nav.members">
+          Centro de miembros
+        </button>
+      </div>
+
+      <!-- 手机端菜单按钮 -->
+      <button class="menu-toggle" type="button">☰</button>
+    </div>
+
+    <!-- 手机端下拉菜单 -->
+    <div class="mobile-nav">
+      <div class="mobile-nav-group">
+        <a href="#inicio" data-i18n="nav.inicio">Inicio</a>
+        <a href="#ejemplos" data-i18n="nav.ejemplos">Ejemplos</a>
+        <a href="#generar" data-i18n="nav.generar">Generar</a>
+        <a href="#precios" data-i18n="nav.precios">Precios</a>
+        <a href="#contacto" data-i18n="nav.contacto">Contacto</a>
+      </div>
+
+      <div class="mobile-nav-group">
+        <button class="btn-ghost" type="button" data-i18n="nav.login">
+          Iniciar sesión
+        </button>
+        <button class="btn-primary" type="button" data-i18n="nav.members">
+          Centro de miembros
+        </button>
+      </div>
+
+      <div class="mobile-nav-group">
+        <div style="font-size:12px; color:var(--text-muted); margin-bottom:4px;" data-i18n="nav.languageLabel">
+          Idioma
+        </div>
+        <button class="btn-ghost lang-option" type="button" data-lang="es">
+          ES Español
+        </button>
+        <button class="btn-ghost lang-option" type="button" data-lang="en">
+          EN English
+        </button>
+        <button class="btn-ghost lang-option" type="button" data-lang="zh">
+          ZH 中文
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="page">
+    <!-- HERO -->
+    <section id="inicio">
+      <div class="hero-layout">
+        <div>
+          <div class="pill" data-i18n="hero.badge">
+            <span class="pill-dot"></span>
+            Impulso IA · para equipos comerciales modernos
+          </div>
+
+          <h1 class="hero-title">
+            <span class="hero-gradient" data-i18n="hero.title.line1">
+              Imágenes & videos de venta
+            </span>
+            <br />
+            <span data-i18n="hero.title.line2">generados con IA.</span>
+          </h1>
+
+          <p class="hero-subtitle" data-i18n="hero.subtitle">
+            Lanza campañas en minutos: sube tu producto, escribe una idea y deja
+            que Impulso genere visuales listos para redes, anuncios y landing
+            pages.
+          </p>
+
+          <div class="hero-actions">
+            <button
+              class="btn-primary"
+              type="button"
+              onclick="scrollToSection('generar')"
+              data-i18n="hero.ctaPrimary"
+            >
+              Empezar ahora
+            </button>
+            <button
+              class="btn-ghost"
+              type="button"
+              onclick="scrollToSection('ejemplos')"
+              data-i18n="hero.ctaSecondary"
+            >
+              Ver ejemplos reales
+            </button>
+          </div>
+
+          <div class="hero-meta">
+            <span data-i18n="hero.meta.nocode">
+              <strong>0 código</strong> · sólo texto y archivos
+            </span>
+            <span data-i18n="hero.meta.openai">
+              <strong>IA de OpenAI</strong> · lista para integrar
+            </span>
+            <span data-i18n="hero.meta.multichannel">
+              <strong>Multi-canal</strong> · social, web, presentaciones
+            </span>
+          </div>
         </div>
 
-        <div class="hero-preview" id="heroPreview">
-          <img
-            id="heroPreviewImage"
-            src="https://images.pexels.com/photos/1181675/pexels-photo-1181675.jpeg?auto=compress&cs=tinysrgb&w=1200"
-            alt="Preview de ejemplo"
-          />
-          <video
-            id="heroPreviewVideo"
-            src="https://videos.pexels.com/video-files/6898855/6898855-uhd_2560_1440_25fps.mp4"
-            muted
-            loop
-            playsinline
-          ></video>
-          <div class="hero-preview-label">Contenido de ejemplo generado</div>
+        <div class="hero-card">
+          <div class="hero-card-header">
+            <span class="hero-card-tag" data-i18n="hero.demoTag">Demo en vivo</span>
+            <div class="hero-switch">
+              <button id="heroToggleImage" class="active" type="button" data-i18n="hero.switch.image">
+                Imagen
+              </button>
+              <button id="heroToggleVideo" type="button" data-i18n="hero.switch.video">
+                Video
+              </button>
+            </div>
+          </div>
+
+          <div class="prompt-box">
+            <strong data-i18n="hero.briefLabel">Brief:</strong>
+            <span data-i18n="hero.briefText">
+              anuncio minimalista para un SaaS de automatización, estilo Apple,
+              fondo oscuro y texto claro.
+            </span>
+          </div>
+
+          <div class="hero-preview">
+            <img
+              id="heroPreviewImage"
+              src="https://images.pexels.com/photos/1181675/pexels-photo-1181675.jpeg?auto=compress&cs=tinysrgb&w=1200"
+              alt="Preview de ejemplo"
+            />
+            <video
+              id="heroPreviewVideo"
+              src="https://videos.pexels.com/video-files/6898855/6898855-uhd_2560_1440_25fps.mp4"
+              muted
+              loop
+              playsinline
+            ></video>
+            <div class="hero-preview-label" data-i18n="hero.demoLabel">
+              Contenido de ejemplo generado
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -1010,8 +1134,10 @@
     <section id="ejemplos">
       <div class="section-header">
         <div>
-          <h2 class="section-title">Ejemplos de uso</h2>
-          <p class="section-subtitle">
+          <h2 class="section-title" data-i18n="examples.title">
+            Ejemplos de uso
+          </h2>
+          <p class="section-subtitle" data-i18n="examples.subtitle">
             Combina imagen y video para mostrar tu propuesta de valor en cada
             punto del funnel comercial.
           </p>
@@ -1020,8 +1146,12 @@
 
       <div class="examples-grid">
         <article class="example-card">
-          <div class="example-tag">Imagen · Redes sociales</div>
-          <div class="example-title">Post de LinkedIn para lanzamiento</div>
+          <div class="example-tag" data-i18n="examples.card1.tag">
+            Imagen · Redes sociales
+          </div>
+          <div class="example-title" data-i18n="examples.card1.title">
+            Post de LinkedIn para lanzamiento
+          </div>
           <div class="example-media">
             <img
               src="https://images.pexels.com/photos/1181243/pexels-photo-1181243.jpeg?auto=compress&cs=tinysrgb&w=1200"
@@ -1031,8 +1161,12 @@
         </article>
 
         <article class="example-card">
-          <div class="example-tag">Video corto · Anuncio</div>
-          <div class="example-title">Story para captar leads</div>
+          <div class="example-tag" data-i18n="examples.card2.tag">
+            Video corto · Anuncio
+          </div>
+          <div class="example-title" data-i18n="examples.card2.title">
+            Story para captar leads
+          </div>
           <div class="example-media">
             <video
               src="https://videos.pexels.com/video-files/6898855/6898855-uhd_2560_1440_25fps.mp4"
@@ -1045,8 +1179,12 @@
         </article>
 
         <article class="example-card">
-          <div class="example-tag">Imagen · Presentación</div>
-          <div class="example-title">Slide hero para tu deck comercial</div>
+          <div class="example-tag" data-i18n="examples.card3.tag">
+            Imagen · Presentación
+          </div>
+          <div class="example-title" data-i18n="examples.card3.title">
+            Slide hero para tu deck comercial
+          </div>
           <div class="example-media">
             <img
               src="https://images.pexels.com/photos/1181671/pexels-photo-1181671.jpeg?auto=compress&cs=tinysrgb&w=1200"
@@ -1061,8 +1199,10 @@
     <section id="generar">
       <div class="section-header">
         <div>
-          <h2 class="section-title">Generar contenido</h2>
-          <p class="section-subtitle">
+          <h2 class="section-title" data-i18n="generate.title">
+            Generar contenido
+          </h2>
+          <p class="section-subtitle" data-i18n="generate.subtitle">
             Esta demo simula el flujo real. Más adelante podrás conectar tu
             propia API de OpenAI de forma segura en backend.
           </p>
@@ -1072,60 +1212,94 @@
       <div class="generate-layout">
         <div class="panel">
           <div class="panel-title">
-            Brief para la IA
-            <span>· describe qué quieres ver en tu imagen o video</span>
+            <span data-i18n="generate.briefTitle">Brief para la IA</span>
+            <span> · </span>
+            <span data-i18n="generate.briefHint">
+              describe qué quieres ver en tu imagen o video
+            </span>
           </div>
 
-          <label for="promptInput">Texto del prompt</label>
+          <label for="promptInput" data-i18n="generate.promptLabel">
+            Texto del prompt
+          </label>
           <textarea
             id="promptInput"
+            data-i18n-placeholder="generate.promptPlaceholder"
             placeholder="Ejemplo: Banner minimalista para automatización comercial, con colores azul y violeta, estilo Apple."
           ></textarea>
 
           <div class="field-row">
             <div>
-              <label for="typeSelect">Tipo de contenido</label>
+              <label for="typeSelect" data-i18n="generate.typeLabel">
+                Tipo de contenido
+              </label>
               <select id="typeSelect">
-                <option value="image">Imagen</option>
-                <option value="video">Video corto</option>
+                <option value="image" data-i18n="generate.type.image">
+                  Imagen
+                </option>
+                <option value="video" data-i18n="generate.type.video">
+                  Video corto
+                </option>
               </select>
             </div>
 
             <div>
-              <label for="styleSelect">Estilo</label>
+              <label for="styleSelect" data-i18n="generate.styleLabel">
+                Estilo
+              </label>
               <select id="styleSelect">
-                <option value="apple">Minimalista Apple</option>
-                <option value="product">Producto sobre fondo limpio</option>
-                <option value="landing">Hero para landing</option>
-                <option value="social">Formato redes</option>
+                <option value="apple" data-i18n="generate.style.apple">
+                  Minimalista Apple
+                </option>
+                <option value="product" data-i18n="generate.style.product">
+                  Producto sobre fondo limpio
+                </option>
+                <option value="landing" data-i18n="generate.style.landing">
+                  Hero para landing
+                </option>
+                <option value="social" data-i18n="generate.style.social">
+                  Formato redes
+                </option>
               </select>
             </div>
           </div>
 
           <div class="upload-row">
             <div>
-              <label for="fileInput">Subir imagen base (opcional)</label>
+              <label for="fileInput" data-i18n="generate.uploadLabel">
+                Subir imagen base (opcional)
+              </label>
               <input id="fileInput" type="file" accept="image/*" />
             </div>
-            <div class="upload-hint">
+            <div class="upload-hint" data-i18n="generate.uploadHint">
               Ideal para subir tu
               <br />producto, logo o mockup.
             </div>
           </div>
 
-          <button id="generateBtn" class="btn-primary btn-generate" type="button">
+          <button
+            id="generateBtn"
+            class="btn-primary btn-generate"
+            type="button"
+            data-i18n="generate.button"
+          >
             Generar demo (simulado)
           </button>
         </div>
 
         <div class="panel">
           <div class="panel-title">
-            Resultado
-            <span>· demo local sin usar tu API key</span>
+            <span data-i18n="generate.resultTitle">Resultado</span>
+            <span> · </span>
+            <span data-i18n="generate.resultHint">
+              demo local sin usar tu API key
+            </span>
           </div>
 
           <div class="results-box" id="resultsBox">
-            <div class="results-label" id="resultsLabel">Esperando contenido…</div>
+            <div class="results-label" id="resultsLabel" data-i18n="generate.waiting">
+              Esperando contenido…
+            </div>
             <img
               id="resultImage"
               alt="Resultado de imagen"
@@ -1138,7 +1312,7 @@
               loop
               playsinline
             ></video>
-            <span id="resultsPlaceholder">
+            <span id="resultsPlaceholder" data-i18n="generate.placeholder">
               Cuando pulses “Generar demo”, simularemos una respuesta de IA con
               contenido de ejemplo.
             </span>
@@ -1151,8 +1325,10 @@
     <section id="precios">
       <div class="section-header">
         <div>
-          <h2 class="section-title">Planes pensados para equipos comerciales</h2>
-          <p class="section-subtitle">
+          <h2 class="section-title" data-i18n="pricing.title">
+            Planes pensados para equipos comerciales
+          </h2>
+          <p class="section-subtitle" data-i18n="pricing.subtitle">
             Empieza con un plan básico y escala cuando tu equipo necesite más
             volumen de imágenes y videos generados.
           </p>
@@ -1161,61 +1337,94 @@
 
       <div class="pricing-grid">
         <article class="price-card">
-          <div class="price-name">Starter</div>
-          <div class="price-desc">
+          <div class="price-name" data-i18n="pricing.starter.name">
+            Starter
+          </div>
+          <div class="price-desc" data-i18n="pricing.starter.desc">
             Para freelancers y pequeños negocios que empiezan a usar IA.
           </div>
           <div class="price-value">
-            19 €<span>/mes</span>
+            <span data-i18n="pricing.starter.price">19 €</span
+            ><span data-i18n="pricing.starter.period">/mes</span>
           </div>
           <ul class="price-features">
-            <li>Hasta 200 imágenes al mes</li>
-            <li>Videos demo en baja resolución</li>
-            <li>Plantillas base de prompts</li>
+            <li data-i18n="pricing.starter.f1">
+              Hasta 200 imágenes al mes
+            </li>
+            <li data-i18n="pricing.starter.f2">
+              Videos demo en baja resolución
+            </li>
+            <li data-i18n="pricing.starter.f3">
+              Plantillas base de prompts
+            </li>
           </ul>
-          <button class="btn-ghost price-cta" type="button">
+          <button
+            class="btn-ghost price-cta"
+            type="button"
+            data-i18n="pricing.starter.cta"
+          >
             Probar Starter
           </button>
         </article>
 
         <article class="price-card">
-          <div class="price-name">Equipo</div>
-          <div class="price-desc">
+          <div class="price-name" data-i18n="pricing.team.name">
+            Equipo
+          </div>
+          <div class="price-desc" data-i18n="pricing.team.desc">
             El equilibrio ideal para equipos comerciales de 3 a 10 personas.
           </div>
           <div class="price-value">
-            59 €<span>/mes</span>
+            <span data-i18n="pricing.team.price">59 €</span
+            ><span data-i18n="pricing.team.period">/mes</span>
           </div>
           <ul class="price-features">
-            <li>1.000 imágenes + 100 videos al mes</li>
-            <li>Biblioteca de estilos por canal</li>
-            <li>Panel de miembros y permisos</li>
+            <li data-i18n="pricing.team.f1">
+              1.000 imágenes + 100 videos al mes
+            </li>
+            <li data-i18n="pricing.team.f2">
+              Biblioteca de estilos por canal
+            </li>
+            <li data-i18n="pricing.team.f3">
+              Panel de miembros y permisos
+            </li>
           </ul>
-          <!-- Stripe checkout link: usa tu enlace de Stripe -->
-          <a
+          <button
             class="btn-primary price-cta"
-            href="https://buy.stripe.com/test_aFa14g2jI3BR37u6Ma5c400"
-            target="_blank"
-            rel="noopener"
+            type="button"
+            data-i18n="pricing.team.cta"
           >
-            Suscribirse ahora
-          </a>
+            Hablar con ventas
+          </button>
         </article>
 
         <article class="price-card">
-          <div class="price-name">Enterprise</div>
-          <div class="price-desc">
+          <div class="price-name" data-i18n="pricing.enterprise.name">
+            Enterprise
+          </div>
+          <div class="price-desc" data-i18n="pricing.enterprise.desc">
             Integración a medida con tu CRM y stack de automatización.
           </div>
           <div class="price-value">
-            A medida <span>/contacto</span>
+            <span data-i18n="pricing.enterprise.price">A medida</span>
+            <span data-i18n="pricing.enterprise.period">/contacto</span>
           </div>
           <ul class="price-features">
-            <li>Integración con tu API de OpenAI</li>
-            <li>Flujos multi-equipo y reporting</li>
-            <li>Soporte prioritario</li>
+            <li data-i18n="pricing.enterprise.f1">
+              Integración con tu API de OpenAI
+            </li>
+            <li data-i18n="pricing.enterprise.f2">
+              Flujos multi-equipo y reporting
+            </li>
+            <li data-i18n="pricing.enterprise.f3">
+              Soporte prioritario
+            </li>
           </ul>
-          <button class="btn-ghost price-cta" type="button">
+          <button
+            class="btn-ghost price-cta"
+            type="button"
+            data-i18n="pricing.enterprise.cta"
+          >
             Solicitar demo
           </button>
         </article>
@@ -1226,8 +1435,10 @@
     <section id="contacto">
       <div class="section-header">
         <div>
-          <h2 class="section-title">Contacto</h2>
-          <p class="section-subtitle">
+          <h2 class="section-title" data-i18n="contact.title">
+            Contacto
+          </h2>
+          <p class="section-subtitle" data-i18n="contact.subtitle">
             ¿Tienes un caso concreto de uso o quieres ver cómo quedaría tu
             producto? Envíanos un mensaje.
           </p>
@@ -1237,11 +1448,11 @@
       <div class="contact-layout">
         <div class="contact-info">
           <p>
-            <strong>Email directo:</strong>
+            <strong data-i18n="contact.emailLabel">Email directo:</strong>
             <br />
             <a href="mailto:hmario0713@gmail.com">hmario0713@gmail.com</a>
           </p>
-          <p>
+          <p data-i18n="contact.description">
             Cuéntanos quién es tu cliente ideal, qué producto vendes y en qué
             canales quieres mostrar tus creatividades (LinkedIn, Instagram,
             landing page, presentaciones, etc.).
@@ -1254,22 +1465,43 @@
         >
           <div class="contact-form-row">
             <div>
-              <label for="nameInput">Nombre</label>
-              <input id="nameInput" type="text" placeholder="Tu nombre" />
+              <label for="nameInput" data-i18n="contact.nameLabel">
+                Nombre
+              </label>
+              <input
+                id="nameInput"
+                type="text"
+                placeholder="Tu nombre"
+                data-i18n-placeholder="contact.namePlaceholder"
+              />
             </div>
             <div>
-              <label for="companyInput">Empresa</label>
-              <input id="companyInput" type="text" placeholder="Nombre de empresa" />
+              <label for="companyInput" data-i18n="contact.companyLabel">
+                Empresa
+              </label>
+              <input
+                id="companyInput"
+                type="text"
+                placeholder="Nombre de empresa"
+                data-i18n-placeholder="contact.companyPlaceholder"
+              />
             </div>
           </div>
 
-          <label for="messageInput">Mensaje</label>
+          <label for="messageInput" data-i18n="contact.messageLabel">
+            Mensaje
+          </label>
           <textarea
             id="messageInput"
+            data-i18n-placeholder="contact.messagePlaceholder"
             placeholder="Ejemplo: Queremos generar creatividades para una campaña en España y Latinoamérica…"
           ></textarea>
 
-          <button class="btn-primary btn-contact" type="submit">
+          <button
+            class="btn-primary btn-contact"
+            type="submit"
+            data-i18n="contact.button"
+          >
             Enviar mensaje (demo)
           </button>
         </form>
@@ -1279,17 +1511,97 @@
 
   <footer>
     <div class="footer-inner">
-      <div>© <span id="yearSpan"></span> Impulso Comercial · Prototipo IA.</div>
+      <div data-i18n="footer.copy">
+        © <span id="yearSpan"></span> Impulso Comercial · Prototipo IA.
+      </div>
       <div class="footer-links">
-        <a href="#inicio">Inicio</a>
-        <a href="#generar">Generar</a>
-        <a href="#precios">Precios</a>
-        <a href="#contacto">Contacto</a>
+        <a href="#inicio" data-i18n="nav.inicio">Inicio</a>
+        <a href="#generar" data-i18n="nav.generar">Generar</a>
+        <a href="#precios" data-i18n="nav.precios">Precios</a>
+        <a href="#contacto" data-i18n="nav.contacto">Contacto</a>
       </div>
     </div>
   </footer>
 
   <script>
+    // 🌍 MULTI-LANGUAGE SYSTEM
+    const langButtons = document.querySelectorAll("[data-lang]");
+    const langToggleBtn = document.querySelector(".btn-lang-toggle");
+    const langMenuDesktop = document.querySelector(".lang-dropdown .lang-menu");
+    const langLabel = document.querySelector("[data-lang-label]");
+
+    function getNested(dict, key) {
+      return key.split(".").reduce((obj, k) => (obj && obj[k] != null ? obj[k] : null), dict);
+    }
+
+    async function loadLanguage(lang) {
+      try {
+        const res = await fetch(`./lang/${lang}.json`);
+        const dict = await res.json();
+
+        // 文本替换
+        document.querySelectorAll("[data-i18n]").forEach((el) => {
+          const key = el.getAttribute("data-i18n");
+          const text = getNested(dict, key);
+          if (!text) return;
+          el.textContent = text;
+        });
+
+        // placeholder 替换
+        document.querySelectorAll("[data-i18n-placeholder]").forEach((el) => {
+          const key = el.getAttribute("data-i18n-placeholder");
+          const text = getNested(dict, key);
+          if (!text) return;
+          el.placeholder = text;
+        });
+
+        // 更新 html lang
+        document.documentElement.lang = lang;
+        localStorage.setItem("site-lang", lang);
+
+        // 更新按钮高亮
+        langButtons.forEach((btn) => {
+          btn.classList.toggle("active", btn.getAttribute("data-lang") === lang);
+        });
+
+        // 更新桌面语言显示
+        if (langLabel) {
+          langLabel.textContent =
+            lang === "es" ? "ES" : lang === "en" ? "EN" : "ZH";
+        }
+      } catch (err) {
+        console.error("Error loading language", err);
+      }
+    }
+
+    // 打开/关闭桌面语言菜单
+    if (langToggleBtn && langMenuDesktop) {
+      langToggleBtn.addEventListener("click", () => {
+        langMenuDesktop.classList.toggle("open");
+      });
+
+      document.addEventListener("click", (e) => {
+        if (
+          !langMenuDesktop.contains(e.target) &&
+          !langToggleBtn.contains(e.target)
+        ) {
+          langMenuDesktop.classList.remove("open");
+        }
+      });
+    }
+
+    // 语言切换
+    langButtons.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const lang = btn.getAttribute("data-lang");
+        loadLanguage(lang);
+      });
+    });
+
+    // 默认或已保存语言
+    const savedLang = localStorage.getItem("site-lang") || "es";
+    loadLanguage(savedLang);
+
     // Año dinámico
     document.getElementById("yearSpan").textContent =
       new Date().getFullYear();
@@ -1308,23 +1620,25 @@
     const heroPreviewImage = document.getElementById("heroPreviewImage");
     const heroPreviewVideo = document.getElementById("heroPreviewVideo");
 
-    heroToggleImage.addEventListener("click", () => {
-      heroToggleImage.classList.add("active");
-      heroToggleVideo.classList.remove("active");
-      heroPreviewImage.style.display = "block";
-      heroPreviewVideo.style.display = "none";
-    });
+    if (heroToggleImage && heroToggleVideo) {
+      heroToggleImage.addEventListener("click", () => {
+        heroToggleImage.classList.add("active");
+        heroToggleVideo.classList.remove("active");
+        heroPreviewImage.style.display = "block";
+        heroPreviewVideo.style.display = "none";
+      });
 
-    heroToggleVideo.addEventListener("click", () => {
-      heroToggleVideo.classList.add("active");
-      heroToggleImage.classList.remove("active");
-      heroPreviewImage.style.display = "none";
-      heroPreviewVideo.style.display = "block";
-      heroPreviewVideo.play().catch(() => {});
-    });
+      heroToggleVideo.addEventListener("click", () => {
+        heroToggleVideo.classList.add("active");
+        heroToggleImage.classList.remove("active");
+        heroPreviewImage.style.display = "none";
+        heroPreviewVideo.style.display = "block";
+        heroPreviewVideo.play().catch(() => {});
+      });
 
-    // 初始状态：显示图片
-    heroToggleImage.click();
+      // 初始：显示图片
+      heroToggleImage.click();
+    }
 
     // 生成 demo（模拟）
     const generateBtn = document.getElementById("generateBtn");
@@ -1339,71 +1653,71 @@
 
     let uploadedPreview = "";
 
-    // 本地预览上传图片（不会发出去）
-    fileInput.addEventListener("change", (e) => {
-      const file = e.target.files && e.target.files[0];
-      if (!file) return;
-      const reader = new FileReader();
-      reader.onload = (ev) => {
-        uploadedPreview = ev.target.result;
-      };
-      reader.readAsDataURL(file);
-    });
+    if (fileInput) {
+      fileInput.addEventListener("change", (e) => {
+        const file = e.target.files && e.target.files[0];
+        if (!file) return;
+        const reader = new FileReader();
+        reader.onload = (ev) => {
+          uploadedPreview = ev.target.result;
+        };
+        reader.readAsDataURL(file);
+      });
+    }
 
-    generateBtn.addEventListener("click", () => {
-      const type = typeSelect.value;
-      const prompt = promptInput.value.trim();
+    if (generateBtn) {
+      generateBtn.addEventListener("click", () => {
+        const type = typeSelect.value;
+        const prompt = promptInput.value.trim();
 
-      generateBtn.disabled = true;
-      generateBtn.textContent = "Generando demo…";
+        generateBtn.disabled = true;
+        generateBtn.textContent = "Generando demo…";
 
-      resultsBox.classList.remove("ready");
-      resultsPlaceholder.style.display = "block";
-      resultImage.style.display = "none";
-      resultVideo.style.display = "none";
-      resultsLabel.textContent = "Procesando con IA (simulado)…";
+        resultsBox.classList.remove("ready");
+        resultsPlaceholder.style.display = "block";
+        resultImage.style.display = "none";
+        resultVideo.style.display = "none";
+        resultsLabel.textContent = "Procesando con IA (simulado)…";
 
-      setTimeout(() => {
-        // 这里只是 demo：真实接 OpenAI API 需要在后台做，避免暴露 API Key
-        resultsBox.classList.add("ready");
-        resultsPlaceholder.style.display = "none";
+        setTimeout(() => {
+          resultsBox.classList.add("ready");
+          resultsPlaceholder.style.display = "none";
 
-        if (type === "image") {
-          resultVideo.pause();
-          resultVideo.removeAttribute("src");
-          resultVideo.load();
+          if (type === "image") {
+            resultVideo.pause();
+            resultVideo.removeAttribute("src");
+            resultVideo.load();
 
-          if (uploadedPreview) {
-            resultImage.src = uploadedPreview;
+            if (uploadedPreview) {
+              resultImage.src = uploadedPreview;
+            } else {
+              resultImage.src =
+                "https://images.pexels.com/photos/1181675/pexels-photo-1181675.jpeg?auto=compress&cs=tinysrgb&w=1200";
+            }
+            resultImage.style.display = "block";
+            resultsLabel.textContent = "Imagen demo generada";
           } else {
-            resultImage.src =
-              "https://images.pexels.com/photos/1181675/pexels-photo-1181675.jpeg?auto=compress&cs=tinysrgb&w=1200";
+            resultImage.removeAttribute("src");
+            resultImage.style.display = "none";
+
+            resultVideo.src =
+              "https://videos.pexels.com/video-files/6898855/6898855-uhd_2560_1440_25fps.mp4";
+            resultVideo.style.display = "block";
+            resultVideo.play().catch(() => {});
+            resultsLabel.textContent = "Video demo generado";
           }
-          resultImage.style.display = "block";
-          resultsLabel.textContent = "Imagen demo generada";
-        } else {
-          resultImage.removeAttribute("src");
-          resultImage.style.display = "none";
 
-          resultVideo.src =
-            "https://videos.pexels.com/video-files/6898855/6898855-uhd_2560_1440_25fps.mp4";
-          resultVideo.style.display = "block";
-          resultVideo
-            .play()
-            .catch(() => {});
-          resultsLabel.textContent = "Video demo generado";
-        }
+          if (!prompt) {
+            console.log(
+              "Sugerencia: añade un prompt para que la IA entienda mejor tu caso."
+            );
+          }
 
-        if (!prompt) {
-          console.log(
-            "Sugerencia: añade un prompt para que la IA entienda mejor tu caso."
-          );
-        }
-
-        generateBtn.disabled = false;
-        generateBtn.textContent = "Generar demo (simulado)";
-      }, 1500);
-    });
+          generateBtn.disabled = false;
+          generateBtn.textContent = "Generar demo (simulado)";
+        }, 1500);
+      });
+    }
 
     // 手机导航展开/收起
     const menuToggle = document.querySelector(".menu-toggle");
@@ -1411,7 +1725,16 @@
 
     if (menuToggle && mobileNav) {
       menuToggle.addEventListener("click", () => {
-        mobileNav.classList.toggle("open");
+        mobileNav.classList.toggle("is-open");
+      });
+
+      document.addEventListener("click", (e) => {
+        if (
+          !mobileNav.contains(e.target) &&
+          !menuToggle.contains(e.target)
+        ) {
+          mobileNav.classList.remove("is-open");
+        }
       });
     }
   </script>

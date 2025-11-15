@@ -1,0 +1,22 @@
+{
+  "nav": {
+    "inicio": "Home",
+    "ejemplos": "Examples",
+    "generar": "Generate",
+    "precios": "Pricing",
+    "contacto": "Contact",
+    "login": "Login",
+    "centro": "Member Center"
+  },
+
+  "hero": {
+    "pill": "Impulso IA · for modern sales teams",
+    "title": "Sales images & videos generated with AI.",
+    "subtitle": "Launch campaigns in minutes: upload your product, write an idea, and Impulso will generate visuals ready for social media, ads, and landing pages.",
+    "btn_start": "Start Now",
+    "btn_examples": "See Real Examples",
+    "meta1": "0 code · just text and files",
+    "meta2": "OpenAI-powered · ready to integrate",
+    "meta3": "Multi-channel · social, web, presentations"
+  }
+}
