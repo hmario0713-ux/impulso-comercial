@@ -955,6 +955,44 @@
 .upload-icon {
   pointer-events: none;
 }
+/* === SIMPLE RESULT BLOCK === */
+
+.simple-result {
+  margin-top: 40px;
+  padding: 20px;
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 12px;
+  text-align: center;
+  max-width: 100%;
+}
+
+.simple-title {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.simple-separator {
+  width: 100%;
+  height: 1px;
+  background: rgba(255,255,255,0.15);
+  margin-bottom: 16px;
+}
+
+.simple-result img,
+.simple-result video {
+  width: 100%;
+  max-width: 100%;
+  border-radius: 10px;
+  display: none;
+}
+
+.simple-placeholder {
+  opacity: 0.6;
+  font-size: 15px;
+  padding: 20px 0;
+}
+
   </style>
 </head>
 
@@ -1266,37 +1304,18 @@
           </button>
         </div>
 
-        <div class="panel">
-          <div class="panel-title">
-            <span data-i18n="generate.resultTitle">Resultado</span>
-            <span> · </span>
-            <span data-i18n="generate.resultHint">
-              demo local sin usar tu API key
-            </span>
-          </div>
+<div class="simple-result" id="resultBox">
+  <div class="simple-title">Resultado</div>
+  <div class="simple-separator"></div>
 
-          <div class="results-box" id="resultsBox">
-            <div class="results-label" id="resultsLabel" data-i18n="generate.waiting">
-              Esperando contenido…
-            </div>
-            <img
-              id="resultImage"
-              alt="Resultado de imagen"
-              src=""
-            />
-            <video
-              id="resultVideo"
-              autoplay
-              muted
-              loop
-              playsinline
-            ></video>
-            <span id="resultsPlaceholder" data-i18n="generate.placeholder">
-              Cuando pulses “Generar demo”, simularemos una respuesta de IA con
-              contenido de ejemplo.
-            </span>
-          </div>
-        </div>
+  <img id="resultImage" src="" alt="Resultado" />
+  <video id="resultVideo" autoplay muted loop playsinline></video>
+
+  <div class="simple-placeholder" id="resultPlaceholder">
+    Genera contenido para ver el resultado aquí.
+  </div>
+</div>
+
       </div>
     </section>
 
