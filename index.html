@@ -1735,6 +1735,24 @@
         }
       });
     }
+    // === Simple Result Display ===
+const generateBtn = document.getElementById("generateBtn");
+const resultImage = document.getElementById("resultImage");
+const resultVideo = document.getElementById("resultVideo");
+const resultPlaceholder = document.getElementById("resultPlaceholder");
+
+if (generateBtn) {
+  generateBtn.addEventListener("click", () => {
+    // 随机生成图片，模拟效果
+    const demoImage = "https://picsum.photos/900/600?random=" + Date.now();
+
+    resultPlaceholder.style.display = "none";
+    resultVideo.style.display = "none";
+
+    resultImage.src = demoImage;
+    resultImage.style.display = "block";
+  });
+}
   </script>
 </body>
 </html>
