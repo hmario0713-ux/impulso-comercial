@@ -1638,31 +1638,7 @@
       heroToggleImage.click();
     }
 
-    // 生成 demo（模拟）
-    const generateBtn = document.getElementById("generateBtn");
-    const promptInput = document.getElementById("promptInput");
-    const typeSelect = document.getElementById("typeSelect");
-    const fileInput = document.getElementById("fileInput");
-    const resultsBox = document.getElementById("resultsBox");
-    const resultsLabel = document.getElementById("resultsLabel");
-    const resultsPlaceholder = document.getElementById("resultsPlaceholder");
-    const resultImage = document.getElementById("resultImage");
-    const resultVideo = document.getElementById("resultVideo");
-
-    let uploadedPreview = "";
-
-    if (fileInput) {
-      fileInput.addEventListener("change", (e) => {
-        const file = e.target.files && e.target.files[0];
-        if (!file) return;
-        const reader = new FileReader();
-        reader.onload = (ev) => {
-          uploadedPreview = ev.target.result;
-        };
-        reader.readAsDataURL(file);
-      });
-    }
-
+ 
     if (generateBtn) {
       generateBtn.addEventListener("click", () => {
         const type = typeSelect.value;
