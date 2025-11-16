@@ -1639,59 +1639,7 @@
     }
 
  
-    if (generateBtn) {
-      generateBtn.addEventListener("click", () => {
-        const type = typeSelect.value;
-        const prompt = promptInput.value.trim();
 
-        generateBtn.disabled = true;
-        generateBtn.textContent = "Generando demo…";
-
-        resultsBox.classList.remove("ready");
-        resultsPlaceholder.style.display = "block";
-        resultImage.style.display = "none";
-        resultVideo.style.display = "none";
-        resultsLabel.textContent = "Procesando con IA (simulado)…";
-
-        setTimeout(() => {
-          resultsBox.classList.add("ready");
-          resultsPlaceholder.style.display = "none";
-
-          if (type === "image") {
-            resultVideo.pause();
-            resultVideo.removeAttribute("src");
-            resultVideo.load();
-
-            if (uploadedPreview) {
-              resultImage.src = uploadedPreview;
-            } else {
-              resultImage.src =
-                "https://images.pexels.com/photos/1181675/pexels-photo-1181675.jpeg?auto=compress&cs=tinysrgb&w=1200";
-            }
-            resultImage.style.display = "block";
-            resultsLabel.textContent = "Imagen demo generada";
-          } else {
-            resultImage.removeAttribute("src");
-            resultImage.style.display = "none";
-
-            resultVideo.src =
-              "https://videos.pexels.com/video-files/6898855/6898855-uhd_2560_1440_25fps.mp4";
-            resultVideo.style.display = "block";
-            resultVideo.play().catch(() => {});
-            resultsLabel.textContent = "Video demo generado";
-          }
-
-          if (!prompt) {
-            console.log(
-              "Sugerencia: añade un prompt para que la IA entienda mejor tu caso."
-            );
-          }
-
-          generateBtn.disabled = false;
-          generateBtn.textContent = "Generar demo (simulado)";
-        }, 1500);
-      });
-    }
 
     // 手机导航展开/收起
     const menuToggle = document.querySelector(".menu-toggle");
