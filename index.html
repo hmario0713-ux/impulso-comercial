@@ -1601,8 +1601,10 @@
     loadLanguage(savedLang);
 
     // Año dinámico
-    document.getElementById("yearSpan").textContent =
-      new Date().getFullYear();
+    const yearSpan = document.getElementById("yearSpan");
+    if (yearSpan) {
+      yearSpan.textContent = new Date().getFullYear();
+    }
 
     // Scroll suave
     function scrollToSection(id) {
@@ -1611,6 +1613,7 @@
         el.scrollIntoView({ behavior: "smooth", block: "start" });
       }
     }
+    window.scrollToSection = scrollToSection;
 
     // Hero 切换 图片/视频
     const heroToggleImage = document.getElementById("heroToggleImage");
@@ -1618,7 +1621,7 @@
     const heroPreviewImage = document.getElementById("heroPreviewImage");
     const heroPreviewVideo = document.getElementById("heroPreviewVideo");
 
-    if (heroToggleImage && heroToggleVideo) {
+    if (heroToggleImage && heroToggleVideo && heroPreviewImage && heroPreviewVideo) {
       heroToggleImage.addEventListener("click", () => {
         heroToggleImage.classList.add("active");
         heroToggleVideo.classList.remove("active");
@@ -1638,8 +1641,42 @@
       heroToggleImage.click();
     }
 
- 
+    // === 简单结果展示（Resultado 区块） ===
+    const generateBtn   = document.getElementById("generateBtn");
+    const typeSelect    = document.getElementById("typeSelect");
+    const resultBox     = document.getElementById("resultBox");
+    const resultImage   = document.getElementById("resultImage");
+    const resultVideo   = document.getElementById("resultVideo");
+    const resultPlaceholder = document.getElementById("resultPlaceholder");
 
+    if (generateBtn && resultImage && resultVideo && resultPlaceholder) {
+      generateBtn.addEventListener("click", () => {
+        const type = typeSelect ? typeSelect.value : "image";
+
+        // 先隐藏占位文字
+        resultPlaceholder.style.display = "none";
+
+        if (type === "image") {
+          // 显示图片，隐藏视频
+          resultVideo.pause();
+          resultVideo.removeAttribute("src");
+          resultVideo.style.display = "none";
+
+          const demoImage = "https://picsum.photos/900/600?random=" + Date.now();
+          resultImage.src = demoImage;
+          resultImage.style.display = "block";
+        } else {
+          // 显示视频，隐藏图片
+          resultImage.removeAttribute("src");
+          resultImage.style.display = "none";
+
+          resultVideo.src =
+            "https://videos.pexels.com/video-files/6898855/6898855-uhd_2560_1440_25fps.mp4";
+          resultVideo.style.display = "block";
+          resultVideo.play().catch(() => {});
+        }
+      });
+    }
 
     // 手机导航展开/收起
     const menuToggle = document.querySelector(".menu-toggle");
@@ -1659,24 +1696,4 @@
         }
       });
     }
-    // === Simple Result Display ===
-const generateBtn = document.getElementById("generateBtn");
-const resultImage = document.getElementById("resultImage");
-const resultVideo = document.getElementById("resultVideo");
-const resultPlaceholder = document.getElementById("resultPlaceholder");
-
-if (generateBtn) {
-  generateBtn.addEventListener("click", () => {
-    // 随机生成图片，模拟效果
-    const demoImage = "https://picsum.photos/900/600?random=" + Date.now();
-
-    resultPlaceholder.style.display = "none";
-    resultVideo.style.display = "none";
-
-    resultImage.src = demoImage;
-    resultImage.style.display = "block";
-  });
-}
   </script>
-</body>
-</html>
